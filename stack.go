@@ -1,6 +1,36 @@
-package stack
+package main
 
 import "fmt"
+
+func main() {
+	// Initialize
+	stack := New()
+
+	// Push
+	stack.Push(5)
+	stack.Push(3)
+	fmt.Println("Stack:", stack.ToString())
+
+	// Top
+	fmt.Println("Topped value:", stack.Top())
+	fmt.Println("Stack:", stack.ToString())
+
+	// Pop
+	fmt.Println("Popped value:", stack.Pop())
+	fmt.Println("Stack:", stack.ToString())
+
+	// Pop
+	fmt.Println("Popped value:", stack.Pop())
+	fmt.Println("Stack:", stack.ToString())
+
+	// Pop
+	fmt.Println("Popped value:", stack.Pop())
+	fmt.Println("Stack:", stack.ToString())
+
+	// Top
+	fmt.Println("Topped value:", stack.Top())
+	fmt.Println("Stack:", stack.ToString())
+}
 
 type Stack struct {
 	storage []int
@@ -28,6 +58,18 @@ func (s *Stack) Pop() int {
 	value := s.storage[n]
 	s.storage[n] = 0
 	s.storage = s.storage[:n]
+
+	return value
+}
+
+// Top returns the top value without removing it from the stack
+func (s *Stack) Top() int {
+	if len(s.storage) == 0 {
+		return -1
+	}
+
+	n := len(s.storage) - 1
+	value := s.storage[n]
 
 	return value
 }
