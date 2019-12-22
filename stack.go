@@ -1,43 +1,15 @@
-package main
+package data_structure
 
-import "fmt"
-
-func main() {
-	// Initialize
-	stack := New()
-
-	// Push
-	stack.Push(5)
-	stack.Push(3)
-	fmt.Println("Stack:", stack.ToString())
-
-	// Top
-	fmt.Println("Topped value:", stack.Top())
-	fmt.Println("Stack:", stack.ToString())
-
-	// Pop
-	fmt.Println("Popped value:", stack.Pop())
-	fmt.Println("Stack:", stack.ToString())
-
-	// Pop
-	fmt.Println("Popped value:", stack.Pop())
-	fmt.Println("Stack:", stack.ToString())
-
-	// Pop
-	fmt.Println("Popped value:", stack.Pop())
-	fmt.Println("Stack:", stack.ToString())
-
-	// Top
-	fmt.Println("Topped value:", stack.Top())
-	fmt.Println("Stack:", stack.ToString())
-}
+import (
+	"fmt"
+)
 
 type Stack struct {
 	storage []int
 }
 
-// New creates a new empty stack
-func New() *Stack {
+// NewStack creates a new empty stack
+func NewStack() *Stack {
 	return &Stack{
 		storage: []int{},
 	}
