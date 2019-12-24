@@ -9,8 +9,8 @@ import (
 func TestQueueNewQueue(t *testing.T) {
 	q := data_structure.NewQueue()
 
-	if q.ToString() != "[]" {
-		t.Errorf("Expected: []. Got: %v", q.ToString())
+	if q.Print() != "[]" {
+		t.Errorf("Expected: []. Got: %v", q.Print())
 	}
 }
 
@@ -19,8 +19,8 @@ func TestQueueEnqueue(t *testing.T) {
 	q.Enqueue(5)
 	q.Enqueue(3)
 
-	if q.ToString() != "[5 3]" {
-		t.Errorf("Expected: [5 3], Got: %v", q.ToString())
+	if q.Print() != "[5 3]" {
+		t.Errorf("Expected: [5 3], Got: %v", q.Print())
 	}
 }
 
@@ -32,11 +32,11 @@ func TestQueueDequeue(t *testing.T) {
 	v := q.Dequeue()
 
 	if v != 5 {
-		t.Errorf("Expected: 5, Got: %v", q.ToString())
+		t.Errorf("Expected: 5, Got: %v", q.Print())
 	}
 
-	if q.ToString() != "[3 1]" {
-		t.Errorf("Expected: [3 1], Got: %v", q.ToString())
+	if q.Print() != "[3 1]" {
+		t.Errorf("Expected: [3 1], Got: %v", q.Print())
 	}
 }
 
@@ -45,11 +45,11 @@ func TestQueueDequeueOnEmptyQueue(t *testing.T) {
 	v := q.Dequeue()
 
 	if v != -1 {
-		t.Errorf("Expected: -1, Got: %v", q.ToString())
+		t.Errorf("Expected: -1, Got: %v", q.Print())
 	}
 
-	if q.ToString() != "[]" {
-		t.Errorf("Expected: [], Got: %v", q.ToString())
+	if q.Print() != "[]" {
+		t.Errorf("Expected: [], Got: %v", q.Print())
 	}
 }
 
@@ -60,11 +60,11 @@ func TestQueuePeek(t *testing.T) {
 	v := q.Peek()
 
 	if v != 1 {
-		t.Errorf("Expected: 1, Got: %v", q.ToString())
+		t.Errorf("Expected: 1, Got: %v", q.Print())
 	}
 
-	if q.ToString() != "[1 2]" {
-		t.Errorf("Expected: [1 2], Got: %v", q.ToString())
+	if q.Print() != "[1 2]" {
+		t.Errorf("Expected: [1 2], Got: %v", q.Print())
 	}
 }
 
@@ -73,11 +73,11 @@ func TestQueuePeekOnEmptyQueue(t *testing.T) {
 	v := q.Peek()
 
 	if v != -1 {
-		t.Errorf("Expected: -1, Got: %v", q.ToString())
+		t.Errorf("Expected: -1, Got: %v", q.Print())
 	}
 
-	if q.ToString() != "[]" {
-		t.Errorf("Expected: [], Got: %v", q.ToString())
+	if q.Print() != "[]" {
+		t.Errorf("Expected: [], Got: %v", q.Print())
 	}
 }
 
@@ -87,8 +87,8 @@ func TestQueueClear(t *testing.T) {
 	q.Enqueue(20)
 	q.Clear()
 
-	if q.ToString() != "[]" {
-		t.Errorf("Expected: [], Got: %v", q.ToString())
+	if q.Print() != "[]" {
+		t.Errorf("Expected: [], Got: %v", q.Print())
 	}
 }
 
@@ -96,7 +96,7 @@ func TestQueueIsEmptyOnEmptyQueue(t *testing.T) {
 	q := data_structure.NewQueue()
 
 	if q.IsEmpty() == false {
-		t.Errorf("Expected: true, Got: %v", q.ToString())
+		t.Errorf("Expected: true, Got: %v", q.Print())
 	}
 }
 
@@ -105,6 +105,6 @@ func TestQueueIsEmptyOnNotEmptyQueue(t *testing.T) {
 	q.Enqueue(1)
 
 	if q.IsEmpty() == true {
-		t.Errorf("Expected: false, Got: %v", q.ToString())
+		t.Errorf("Expected: false, Got: %v", q.Print())
 	}
 }

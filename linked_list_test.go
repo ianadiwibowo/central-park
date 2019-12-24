@@ -9,8 +9,8 @@ import (
 func TestLinkedListNewLinkedList(t *testing.T) {
 	l := data_structure.NewLinkedList()
 
-	if l.ToString() != "[]" {
-		t.Errorf("Expected: []. Got: %v", l.ToString())
+	if l.Print() != "[]" {
+		t.Errorf("Expected: []. Got: %v", l.Print())
 	}
 }
 
@@ -20,8 +20,8 @@ func TestLinkedListAdd(t *testing.T) {
 	l.Add(10)
 	l.Add(30)
 
-	if l.ToString() != "[7 10 30]" {
-		t.Errorf("Expected: [7 10 30]. Got: %v", l.ToString())
+	if l.Print() != "[7 10 30]" {
+		t.Errorf("Expected: [7 10 30]. Got: %v", l.Print())
 	}
 }
 
@@ -31,8 +31,8 @@ func TestLinkedListInsertBefore(t *testing.T) {
 	l.Add(2)
 
 	l.InsertBefore(3, 2)
-	if l.ToString() != "[1 3 2]" {
-		t.Errorf("Expected: [1 3 2]. Got: %v", l.ToString())
+	if l.Print() != "[1 3 2]" {
+		t.Errorf("Expected: [1 3 2]. Got: %v", l.Print())
 	}
 }
 
@@ -42,8 +42,8 @@ func TestLinkedListInsertBeforeNonExistentValue(t *testing.T) {
 	l.Add(2)
 
 	l.InsertBefore(3, 5)
-	if l.ToString() != "[1 2]" {
-		t.Errorf("Expected: [1 2]. Got: %v", l.ToString())
+	if l.Print() != "[1 2]" {
+		t.Errorf("Expected: [1 2]. Got: %v", l.Print())
 	}
 }
 
@@ -53,8 +53,8 @@ func TestLinkedListInsertBeforeFirstNode(t *testing.T) {
 	l.Add(2)
 
 	l.InsertBefore(10, 1)
-	if l.ToString() != "[10 1 2]" {
-		t.Errorf("Expected: [10 1 2]. Got: %v", l.ToString())
+	if l.Print() != "[10 1 2]" {
+		t.Errorf("Expected: [10 1 2]. Got: %v", l.Print())
 	}
 }
 
@@ -64,8 +64,8 @@ func TestLinkedListInsertAfter(t *testing.T) {
 	l.Add(2)
 
 	l.InsertAfter(3, 1)
-	if l.ToString() != "[1 3 2]" {
-		t.Errorf("Expected: [1 3 2]. Got: %v", l.ToString())
+	if l.Print() != "[1 3 2]" {
+		t.Errorf("Expected: [1 3 2]. Got: %v", l.Print())
 	}
 }
 
@@ -75,8 +75,8 @@ func TestLinkedListInsertAfterNonExistentValue(t *testing.T) {
 	l.Add(2)
 
 	l.InsertAfter(3, 5)
-	if l.ToString() != "[1 2]" {
-		t.Errorf("Expected: [1 2]. Got: %v", l.ToString())
+	if l.Print() != "[1 2]" {
+		t.Errorf("Expected: [1 2]. Got: %v", l.Print())
 	}
 }
 
@@ -86,8 +86,8 @@ func TestLinkedListInsertAfterLastNode(t *testing.T) {
 	l.Add(2)
 
 	l.InsertAfter(10, 2)
-	if l.ToString() != "[1 2 10]" {
-		t.Errorf("Expected: [1 2 10]. Got: %v", l.ToString())
+	if l.Print() != "[1 2 10]" {
+		t.Errorf("Expected: [1 2 10]. Got: %v", l.Print())
 	}
 }
 
@@ -99,8 +99,8 @@ func TestLinkedListDelete(t *testing.T) {
 	l.Add(8)
 
 	l.Delete(6)
-	if l.ToString() != "[2 4 8]" {
-		t.Errorf("Expected: [2 4 8]. Got: %v", l.ToString())
+	if l.Print() != "[2 4 8]" {
+		t.Errorf("Expected: [2 4 8]. Got: %v", l.Print())
 	}
 }
 
@@ -112,8 +112,8 @@ func TestLinkedListDeleteFirstNode(t *testing.T) {
 	l.Add(8)
 
 	l.Delete(2)
-	if l.ToString() != "[4 6 8]" {
-		t.Errorf("Expected: [4 6 8]. Got: %v", l.ToString())
+	if l.Print() != "[4 6 8]" {
+		t.Errorf("Expected: [4 6 8]. Got: %v", l.Print())
 	}
 }
 
@@ -125,8 +125,8 @@ func TestDeleteLastNode(t *testing.T) {
 	l.Add(8)
 
 	l.Delete(8)
-	if l.ToString() != "[2 4 6]" {
-		t.Errorf("Expected: [2 4 6]. Got: %v", l.ToString())
+	if l.Print() != "[2 4 6]" {
+		t.Errorf("Expected: [2 4 6]. Got: %v", l.Print())
 	}
 }
 
@@ -138,8 +138,8 @@ func TestDeleteWithNonExistentValue(t *testing.T) {
 	l.Add(8)
 
 	l.Delete(5)
-	if l.ToString() != "[2 4 6 8]" {
-		t.Errorf("Expected: [2 4 6 8]. Got: %v", l.ToString())
+	if l.Print() != "[2 4 6 8]" {
+		t.Errorf("Expected: [2 4 6 8]. Got: %v", l.Print())
 	}
 }
 

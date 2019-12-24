@@ -110,8 +110,8 @@ func (l *LinkedList) Find(value int) (node *LinkedListNode) {
 	return nil
 }
 
-// ToString returns the human-readable format of the linked list
-func (l *LinkedList) ToString() string {
+// Print returns the human-readable format of the linked list
+func (l *LinkedList) Print() string {
 	v := ""
 	currentNode := l.Head
 	for currentNode != nil {

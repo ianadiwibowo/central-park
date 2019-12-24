@@ -52,7 +52,7 @@ func (q *Queue) IsEmpty() bool {
 	return len(q.Storage) == 0
 }
 
-// ToString returns the human-readable format of the queue
-func (q *Queue) ToString() string {
+// Print returns the human-readable format of the queue
+func (q *Queue) Print() string {
 	return fmt.Sprintf("%v", q.Storage)
 }

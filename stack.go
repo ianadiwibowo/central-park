@@ -51,7 +51,7 @@ func (s *Stack) IsEmpty() bool {
 	return len(s.Storage) == 0
 }
 
-// ToString returns the human-readable format of the stack
-func (s *Stack) ToString() string {
+// Print returns the human-readable format of the stack
+func (s *Stack) Print() string {
 	return fmt.Sprintf("%v", s.Storage)
 }
