@@ -6,7 +6,7 @@ import (
 	data_structure "github.com/ianadiwibowo/central-park"
 )
 
-func TestNewLinkedList(t *testing.T) {
+func TestLinkedListNewLinkedList(t *testing.T) {
 	l := data_structure.NewLinkedList()
 
 	if l.ToString() != "[]" {
@@ -14,7 +14,7 @@ func TestNewLinkedList(t *testing.T) {
 	}
 }
 
-func TestAdd(t *testing.T) {
+func TestLinkedListAdd(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(7)
 	l.Add(10)
@@ -25,7 +25,7 @@ func TestAdd(t *testing.T) {
 	}
 }
 
-func TestInsertBefore(t *testing.T) {
+func TestLinkedListInsertBefore(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -36,7 +36,7 @@ func TestInsertBefore(t *testing.T) {
 	}
 }
 
-func TestInsertBeforeNonExistentValue(t *testing.T) {
+func TestLinkedListInsertBeforeNonExistentValue(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -47,7 +47,7 @@ func TestInsertBeforeNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestInsertBeforeFirstNode(t *testing.T) {
+func TestLinkedListInsertBeforeFirstNode(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -58,7 +58,7 @@ func TestInsertBeforeFirstNode(t *testing.T) {
 	}
 }
 
-func TestInsertAfter(t *testing.T) {
+func TestLinkedListInsertAfter(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -69,7 +69,7 @@ func TestInsertAfter(t *testing.T) {
 	}
 }
 
-func TestInsertAfterNonExistentValue(t *testing.T) {
+func TestLinkedListInsertAfterNonExistentValue(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -80,7 +80,7 @@ func TestInsertAfterNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestInsertAfterLastNode(t *testing.T) {
+func TestLinkedListInsertAfterLastNode(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -91,7 +91,7 @@ func TestInsertAfterLastNode(t *testing.T) {
 	}
 }
 
-func TestDelete(t *testing.T) {
+func TestLinkedListDelete(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
@@ -104,7 +104,7 @@ func TestDelete(t *testing.T) {
 	}
 }
 
-func TestDeleteFirstNode(t *testing.T) {
+func TestLinkedListDeleteFirstNode(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
@@ -143,7 +143,7 @@ func TestDeleteWithNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestFind(t *testing.T) {
+func TestLinkedListFind(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(100)
 	l.Add(200)
@@ -160,7 +160,7 @@ func TestFind(t *testing.T) {
 	}
 }
 
-func TestFindWithNonExistentValue(t *testing.T) {
+func TestLinkedListFindWithNonExistentValue(t *testing.T) {
 	l := data_structure.NewLinkedList()
 	l.Add(100)
 	l.Add(200)

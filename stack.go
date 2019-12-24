@@ -22,7 +22,7 @@ func (s *Stack) Push(value int) {
 
 // Pop returns the top value and remove it from the stack
 func (s *Stack) Pop() int {
-	if len(s.Storage) == 0 {
+	if s.IsEmpty() {
 		return -1
 	}
 
@@ -34,9 +34,9 @@ func (s *Stack) Pop() int {
 	return value
 }
 
-// Top returns the top value without removing it from the stack
-func (s *Stack) Top() int {
-	if len(s.Storage) == 0 {
+// Peek returns the top value without removing it from the stack
+func (s *Stack) Peek() int {
+	if s.IsEmpty() {
 		return -1
 	}
 
@@ -44,6 +44,11 @@ func (s *Stack) Top() int {
 	value := s.Storage[n]
 
 	return value
+}
+
+// IsEmpty tells whether the stack is empty (true) or not (false)
+func (s *Stack) IsEmpty() bool {
+	return len(s.Storage) == 0
 }
 
 // ToString returns the human-readable format of the stack
