@@ -3,10 +3,10 @@ package linkedlist_test
 import (
 	"testing"
 
-	linkedlist "github.com/ianadiwibowo/central-park/linkedlist"
+	"github.com/ianadiwibowo/central-park/linkedlist"
 )
 
-func TestLinkedListNewLinkedList(t *testing.T) {
+func TestNewLinkedList(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 
 	if l.Print() != "[]" {
@@ -14,7 +14,7 @@ func TestLinkedListNewLinkedList(t *testing.T) {
 	}
 }
 
-func TestLinkedListAdd(t *testing.T) {
+func TestAdd(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(7)
 	l.Add(10)
@@ -25,7 +25,7 @@ func TestLinkedListAdd(t *testing.T) {
 	}
 }
 
-func TestLinkedListInsertBefore(t *testing.T) {
+func TestInsertBefore(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -36,7 +36,7 @@ func TestLinkedListInsertBefore(t *testing.T) {
 	}
 }
 
-func TestLinkedListInsertBeforeNonExistentValue(t *testing.T) {
+func TestInsertBeforeNonExistentValue(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -47,7 +47,7 @@ func TestLinkedListInsertBeforeNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestLinkedListInsertBeforeFirstNode(t *testing.T) {
+func TestInsertBeforeFirstNode(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -58,7 +58,7 @@ func TestLinkedListInsertBeforeFirstNode(t *testing.T) {
 	}
 }
 
-func TestLinkedListInsertAfter(t *testing.T) {
+func TestInsertAfter(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -69,7 +69,7 @@ func TestLinkedListInsertAfter(t *testing.T) {
 	}
 }
 
-func TestLinkedListInsertAfterNonExistentValue(t *testing.T) {
+func TestInsertAfterNonExistentValue(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -80,7 +80,7 @@ func TestLinkedListInsertAfterNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestLinkedListInsertAfterLastNode(t *testing.T) {
+func TestInsertAfterLastNode(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
@@ -91,7 +91,7 @@ func TestLinkedListInsertAfterLastNode(t *testing.T) {
 	}
 }
 
-func TestLinkedListDelete(t *testing.T) {
+func TestDelete(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
@@ -104,7 +104,7 @@ func TestLinkedListDelete(t *testing.T) {
 	}
 }
 
-func TestLinkedListDeleteFirstNode(t *testing.T) {
+func TestDeleteFirstNode(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
@@ -143,7 +143,7 @@ func TestDeleteWithNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestLinkedListFind(t *testing.T) {
+func TestFind(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(100)
 	l.Add(200)
@@ -160,7 +160,7 @@ func TestLinkedListFind(t *testing.T) {
 	}
 }
 
-func TestLinkedListFindWithNonExistentValue(t *testing.T) {
+func TestFindWithNonExistentValue(t *testing.T) {
 	l := linkedlist.NewLinkedList()
 	l.Add(100)
 	l.Add(200)

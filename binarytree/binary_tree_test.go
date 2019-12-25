@@ -3,10 +3,10 @@ package binarytree_test
 import (
 	"testing"
 
-	binarytree "github.com/ianadiwibowo/central-park/binarytree"
+	"github.com/ianadiwibowo/central-park/binarytree"
 )
 
-func TestBinaryTreeNewBinaryTree(t *testing.T) {
+func TestNewBinaryTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 
 	if b.PrintPreOrder() != "[]" {
@@ -14,7 +14,7 @@ func TestBinaryTreeNewBinaryTree(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeSetRoot(t *testing.T) {
+func TestSetRoot(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 
@@ -23,7 +23,7 @@ func TestBinaryTreeSetRoot(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeInsertLeft(t *testing.T) {
+func TestInsertLeft(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertLeft(1, 5)
@@ -33,7 +33,7 @@ func TestBinaryTreeInsertLeft(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeInsertLeftOnNonExistentValue(t *testing.T) {
+func TestInsertLeftOnNonExistentValue(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertLeft(1, 4)
@@ -43,7 +43,7 @@ func TestBinaryTreeInsertLeftOnNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeInsertRight(t *testing.T) {
+func TestInsertRight(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
@@ -53,7 +53,7 @@ func TestBinaryTreeInsertRight(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeInsertRightOnNonExistentValue(t *testing.T) {
+func TestInsertRightOnNonExistentValue(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 4)
@@ -63,7 +63,7 @@ func TestBinaryTreeInsertRightOnNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeFind(t *testing.T) {
+func TestFind(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
@@ -74,7 +74,7 @@ func TestBinaryTreeFind(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeFindNonExistentValue(t *testing.T) {
+func TestFindNonExistentValue(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
@@ -85,7 +85,7 @@ func TestBinaryTreeFindNonExistentValue(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeHeightOnBalancedTree(t *testing.T) {
+func TestHeightOnBalancedTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertLeft(1, 5)
@@ -96,7 +96,7 @@ func TestBinaryTreeHeightOnBalancedTree(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeHeightOnBiggerBalancedTree(t *testing.T) {
+func TestHeightOnBiggerBalancedTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 	b.InsertLeft(2, 1)
@@ -111,7 +111,7 @@ func TestBinaryTreeHeightOnBiggerBalancedTree(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeHeightOnSkewedLeftTree(t *testing.T) {
+func TestHeightOnSkewedLeftTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 	b.InsertLeft(2, 1)
@@ -124,7 +124,7 @@ func TestBinaryTreeHeightOnSkewedLeftTree(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeHeightOnSkewedRightTree(t *testing.T) {
+func TestHeightOnSkewedRightTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 	b.InsertRight(2, 1)
@@ -137,7 +137,7 @@ func TestBinaryTreeHeightOnSkewedRightTree(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeHeightOnRootOnlyTree(t *testing.T) {
+func TestHeightOnRootOnlyTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 
@@ -146,7 +146,7 @@ func TestBinaryTreeHeightOnRootOnlyTree(t *testing.T) {
 	}
 }
 
-func TestBinaryTreeHeightOnEmptyTree(t *testing.T) {
+func TestHeightOnEmptyTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 
 	if b.Height() != 0 {
@@ -172,7 +172,7 @@ func TestBinaryPrintPreOrder(t *testing.T) {
 	}
 }
 
-func TestBinaryTreePrintInOrder(t *testing.T) {
+func TestPrintInOrder(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
 	b.InsertLeft(5, 8)
@@ -190,7 +190,7 @@ func TestBinaryTreePrintInOrder(t *testing.T) {
 	}
 }
 
-func TestBinaryTreePrintPostOrder(t *testing.T) {
+func TestPrintPostOrder(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
 	b.InsertLeft(5, 8)
@@ -208,7 +208,7 @@ func TestBinaryTreePrintPostOrder(t *testing.T) {
 	}
 }
 
-// func TestBinaryTreePrintLevelOrder(t *testing.T) {
+// func TestPrintLevelOrder(t *testing.T) {
 // 	b := binarytree.NewBinaryTree()
 // 	b.SetRoot(8)
 // 	b.InsertLeft(5, 8)
