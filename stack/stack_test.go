@@ -1,13 +1,13 @@
-package data_structure_test
+package stack_test
 
 import (
 	"testing"
 
-	data_structure "github.com/ianadiwibowo/central-park"
+	stack "github.com/ianadiwibowo/central-park/stack"
 )
 
 func TestStackNewStack(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 
 	if s.Print() != "[]" {
 		t.Errorf("Expected: []. Got: %v", s.Print())
@@ -15,7 +15,7 @@ func TestStackNewStack(t *testing.T) {
 }
 
 func TestStackPush(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 	s.Push(5)
 	s.Push(3)
 
@@ -25,7 +25,7 @@ func TestStackPush(t *testing.T) {
 }
 
 func TestStackPop(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 	s.Push(5)
 	s.Push(3)
 	v := s.Pop()
@@ -40,7 +40,7 @@ func TestStackPop(t *testing.T) {
 }
 
 func TestStackPopOnEmptyStack(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 	v := s.Pop()
 
 	if v != -1 {
@@ -53,7 +53,7 @@ func TestStackPopOnEmptyStack(t *testing.T) {
 }
 
 func TestStackPeek(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 	s.Push(5)
 	s.Push(3)
 	v := s.Peek()
@@ -68,7 +68,7 @@ func TestStackPeek(t *testing.T) {
 }
 
 func TestStackPeekOnEmptyStack(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 	v := s.Peek()
 
 	if v != -1 {
@@ -81,7 +81,7 @@ func TestStackPeekOnEmptyStack(t *testing.T) {
 }
 
 func TestStackIsEmptyOnEmptyStack(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 
 	if s.IsEmpty() == false {
 		t.Errorf("Expected: true, Got: %v", s.Print())
@@ -89,7 +89,7 @@ func TestStackIsEmptyOnEmptyStack(t *testing.T) {
 }
 
 func TestStackIsEmptyOnNotEmptyStack(t *testing.T) {
-	s := data_structure.NewStack()
+	s := stack.NewStack()
 	s.Push(5)
 	s.Push(3)
 

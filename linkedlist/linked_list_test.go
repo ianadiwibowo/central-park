@@ -1,13 +1,13 @@
-package data_structure_test
+package linkedlist_test
 
 import (
 	"testing"
 
-	data_structure "github.com/ianadiwibowo/central-park"
+	linkedlist "github.com/ianadiwibowo/central-park/linkedlist"
 )
 
 func TestLinkedListNewLinkedList(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 
 	if l.Print() != "[]" {
 		t.Errorf("Expected: []. Got: %v", l.Print())
@@ -15,7 +15,7 @@ func TestLinkedListNewLinkedList(t *testing.T) {
 }
 
 func TestLinkedListAdd(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(7)
 	l.Add(10)
 	l.Add(30)
@@ -26,7 +26,7 @@ func TestLinkedListAdd(t *testing.T) {
 }
 
 func TestLinkedListInsertBefore(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
 
@@ -37,7 +37,7 @@ func TestLinkedListInsertBefore(t *testing.T) {
 }
 
 func TestLinkedListInsertBeforeNonExistentValue(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
 
@@ -48,7 +48,7 @@ func TestLinkedListInsertBeforeNonExistentValue(t *testing.T) {
 }
 
 func TestLinkedListInsertBeforeFirstNode(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
 
@@ -59,7 +59,7 @@ func TestLinkedListInsertBeforeFirstNode(t *testing.T) {
 }
 
 func TestLinkedListInsertAfter(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
 
@@ -70,7 +70,7 @@ func TestLinkedListInsertAfter(t *testing.T) {
 }
 
 func TestLinkedListInsertAfterNonExistentValue(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
 
@@ -81,7 +81,7 @@ func TestLinkedListInsertAfterNonExistentValue(t *testing.T) {
 }
 
 func TestLinkedListInsertAfterLastNode(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(1)
 	l.Add(2)
 
@@ -92,7 +92,7 @@ func TestLinkedListInsertAfterLastNode(t *testing.T) {
 }
 
 func TestLinkedListDelete(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
 	l.Add(6)
@@ -105,7 +105,7 @@ func TestLinkedListDelete(t *testing.T) {
 }
 
 func TestLinkedListDeleteFirstNode(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
 	l.Add(6)
@@ -118,7 +118,7 @@ func TestLinkedListDeleteFirstNode(t *testing.T) {
 }
 
 func TestDeleteLastNode(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
 	l.Add(6)
@@ -131,7 +131,7 @@ func TestDeleteLastNode(t *testing.T) {
 }
 
 func TestDeleteWithNonExistentValue(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(2)
 	l.Add(4)
 	l.Add(6)
@@ -144,7 +144,7 @@ func TestDeleteWithNonExistentValue(t *testing.T) {
 }
 
 func TestLinkedListFind(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(100)
 	l.Add(200)
 	l.Add(300)
@@ -161,7 +161,7 @@ func TestLinkedListFind(t *testing.T) {
 }
 
 func TestLinkedListFindWithNonExistentValue(t *testing.T) {
-	l := data_structure.NewLinkedList()
+	l := linkedlist.NewLinkedList()
 	l.Add(100)
 	l.Add(200)
 	l.Add(300)

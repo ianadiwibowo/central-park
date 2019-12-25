@@ -1,13 +1,13 @@
-package data_structure_test
+package binarytree_test
 
 import (
 	"testing"
 
-	data_structure "github.com/ianadiwibowo/central-park"
+	binarytree "github.com/ianadiwibowo/central-park/binarytree"
 )
 
 func TestBinaryTreeNewBinaryTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 
 	if b.PrintPreOrder() != "[]" {
 		t.Errorf("Expected: []. Got: %v", b.PrintPreOrder())
@@ -15,7 +15,7 @@ func TestBinaryTreeNewBinaryTree(t *testing.T) {
 }
 
 func TestBinaryTreeSetRoot(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 
 	if b.PrintPreOrder() != "[5]" {
@@ -24,7 +24,7 @@ func TestBinaryTreeSetRoot(t *testing.T) {
 }
 
 func TestBinaryTreeInsertLeft(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertLeft(1, 5)
 
@@ -34,7 +34,7 @@ func TestBinaryTreeInsertLeft(t *testing.T) {
 }
 
 func TestBinaryTreeInsertLeftOnNonExistentValue(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertLeft(1, 4)
 
@@ -44,7 +44,7 @@ func TestBinaryTreeInsertLeftOnNonExistentValue(t *testing.T) {
 }
 
 func TestBinaryTreeInsertRight(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
 
@@ -54,7 +54,7 @@ func TestBinaryTreeInsertRight(t *testing.T) {
 }
 
 func TestBinaryTreeInsertRightOnNonExistentValue(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 4)
 
@@ -64,7 +64,7 @@ func TestBinaryTreeInsertRightOnNonExistentValue(t *testing.T) {
 }
 
 func TestBinaryTreeFind(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
 	currentNode := b.Find(7)
@@ -75,7 +75,7 @@ func TestBinaryTreeFind(t *testing.T) {
 }
 
 func TestBinaryTreeFindNonExistentValue(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
 	currentNode := b.Find(8)
@@ -86,7 +86,7 @@ func TestBinaryTreeFindNonExistentValue(t *testing.T) {
 }
 
 func TestBinaryTreeHeightOnBalancedTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 	b.InsertLeft(1, 5)
 	b.InsertRight(2, 5)
@@ -97,7 +97,7 @@ func TestBinaryTreeHeightOnBalancedTree(t *testing.T) {
 }
 
 func TestBinaryTreeHeightOnBiggerBalancedTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 	b.InsertLeft(2, 1)
 	b.InsertLeft(3, 2)
@@ -112,7 +112,7 @@ func TestBinaryTreeHeightOnBiggerBalancedTree(t *testing.T) {
 }
 
 func TestBinaryTreeHeightOnSkewedLeftTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 	b.InsertLeft(2, 1)
 	b.InsertLeft(3, 2)
@@ -125,7 +125,7 @@ func TestBinaryTreeHeightOnSkewedLeftTree(t *testing.T) {
 }
 
 func TestBinaryTreeHeightOnSkewedRightTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 	b.InsertRight(2, 1)
 	b.InsertRight(3, 2)
@@ -138,7 +138,7 @@ func TestBinaryTreeHeightOnSkewedRightTree(t *testing.T) {
 }
 
 func TestBinaryTreeHeightOnRootOnlyTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(1)
 
 	if b.Height() != 0 {
@@ -147,7 +147,7 @@ func TestBinaryTreeHeightOnRootOnlyTree(t *testing.T) {
 }
 
 func TestBinaryTreeHeightOnEmptyTree(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 
 	if b.Height() != 0 {
 		t.Errorf("Expected: 0. Got: %v", b.Height())
@@ -155,7 +155,7 @@ func TestBinaryTreeHeightOnEmptyTree(t *testing.T) {
 }
 
 func TestBinaryPrintPreOrder(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
 	b.InsertLeft(5, 8)
 	b.InsertLeft(9, 5)
@@ -173,7 +173,7 @@ func TestBinaryPrintPreOrder(t *testing.T) {
 }
 
 func TestBinaryTreePrintInOrder(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
 	b.InsertLeft(5, 8)
 	b.InsertLeft(9, 5)
@@ -191,7 +191,7 @@ func TestBinaryTreePrintInOrder(t *testing.T) {
 }
 
 func TestBinaryTreePrintPostOrder(t *testing.T) {
-	b := data_structure.NewBinaryTree()
+	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
 	b.InsertLeft(5, 8)
 	b.InsertLeft(9, 5)
@@ -209,7 +209,7 @@ func TestBinaryTreePrintPostOrder(t *testing.T) {
 }
 
 // func TestBinaryTreePrintLevelOrder(t *testing.T) {
-// 	b := data_structure.NewBinaryTree()
+// 	b := binarytree.NewBinaryTree()
 // 	b.SetRoot(8)
 // 	b.InsertLeft(5, 8)
 // 	b.InsertLeft(9, 5)

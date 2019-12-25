@@ -1,13 +1,13 @@
-package data_structure_test
+package queue_test
 
 import (
 	"testing"
 
-	data_structure "github.com/ianadiwibowo/central-park"
+	queue "github.com/ianadiwibowo/central-park/queue"
 )
 
 func TestQueueNewQueue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 
 	if q.Print() != "[]" {
 		t.Errorf("Expected: []. Got: %v", q.Print())
@@ -15,7 +15,7 @@ func TestQueueNewQueue(t *testing.T) {
 }
 
 func TestQueueEnqueue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	q.Enqueue(5)
 	q.Enqueue(3)
 
@@ -25,7 +25,7 @@ func TestQueueEnqueue(t *testing.T) {
 }
 
 func TestQueueDequeue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	q.Enqueue(5)
 	q.Enqueue(3)
 	q.Enqueue(1)
@@ -41,7 +41,7 @@ func TestQueueDequeue(t *testing.T) {
 }
 
 func TestQueueDequeueOnEmptyQueue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	v := q.Dequeue()
 
 	if v != -1 {
@@ -54,7 +54,7 @@ func TestQueueDequeueOnEmptyQueue(t *testing.T) {
 }
 
 func TestQueuePeek(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	v := q.Peek()
@@ -69,7 +69,7 @@ func TestQueuePeek(t *testing.T) {
 }
 
 func TestQueuePeekOnEmptyQueue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	v := q.Peek()
 
 	if v != -1 {
@@ -82,7 +82,7 @@ func TestQueuePeekOnEmptyQueue(t *testing.T) {
 }
 
 func TestQueueClear(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	q.Enqueue(10)
 	q.Enqueue(20)
 	q.Clear()
@@ -93,7 +93,7 @@ func TestQueueClear(t *testing.T) {
 }
 
 func TestQueueIsEmptyOnEmptyQueue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 
 	if q.IsEmpty() == false {
 		t.Errorf("Expected: true, Got: %v", q.Print())
@@ -101,7 +101,7 @@ func TestQueueIsEmptyOnEmptyQueue(t *testing.T) {
 }
 
 func TestQueueIsEmptyOnNotEmptyQueue(t *testing.T) {
-	q := data_structure.NewQueue()
+	q := queue.NewQueue()
 	q.Enqueue(1)
 
 	if q.IsEmpty() == true {
