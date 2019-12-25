@@ -1,0 +1,82 @@
+package number
+
+import (
+	"math"
+)
+
+// ConvDecimalToBinary converts decimal (base 10) to binary (base 2) in 0-1 array format
+func ConvDecimalToBinary(value int) []int {
+	if value == 0 {
+		return []int{0}
+	}
+
+	binary := []int{}
+
+	for value != 0 {
+		binary = append([]int{value % 2}, binary...)
+		value = value / 2
+	}
+
+	return binary
+}
+
+// ConvBinaryToDecimal converts binary (base 2) in 0-1 array format to decimal (base 10)
+func ConvBinaryToDecimal(value []int) int {
+	decimal := 0
+
+	for i, b := range value {
+		power := len(value) - 1 - i
+		decimal += int(math.Pow(2, float64(power))) * b
+	}
+
+	return decimal
+}
+
+// AddBinary performs binary addition of a and b, both in 0-1 array format
+func AddBinary(a, b []int) (result []int) {
+	a, b = MakeSameLength(a, b)
+
+	var digit, carry int
+	for i := len(a) - 1; i >= 0; i-- {
+		digit, carry = AddBinaryDigit(a[i], b[i], carry)
+		result = append([]int{digit}, result...)
+	}
+
+	if carry == 1 {
+		result = append([]int{carry}, result...)
+	}
+
+	return result
+}
+
+// MakeSameLength pads either a or b with leading zeros, so both have the same length
+func MakeSameLength(a, b []int) ([]int, []int) {
+	if len(b) > len(a) {
+		a = PadLeftWithZero(a, len(b)-len(a))
+	} else if len(a) > len(b) {
+		b = PadLeftWithZero(b, len(a)-len(b))
+	}
+
+	return a, b
+}
+
+// PadLeftWithZero adds leading zeros prefix to a, with zeroCount length
+func PadLeftWithZero(a []int, zeroCount int) []int {
+	prefix := make([]int, zeroCount)
+
+	return append(prefix, a...)
+}
+
+// AddBinaryDigit performs single binary digit addition of a and b, with optional carry
+func AddBinaryDigit(a, b, carry int) (result int, carryOut int) {
+	result = a + b + carry
+	if result == 2 {
+		result = 0
+		carryOut = 1
+	} else if result == 3 {
+		result = 1
+		carryOut = 1
+	}
+
+	return result, carryOut
+}
