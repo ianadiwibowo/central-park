@@ -49,6 +49,50 @@ func TestConvDecimalToBinary(t *testing.T) {
 	}
 }
 
+func TestConvDecimalToNegaBinary(t *testing.T) {
+	decimals := []int{
+		85,
+		52,
+		-5,
+		-4,
+		-3,
+		-2,
+		-1,
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		25,
+	}
+	negaBinaries := [][]int{
+		[]int{1, 0, 1, 0, 1, 0, 1},
+		[]int{1, 1, 1, 0, 1, 0, 0},
+		[]int{1, 1, 1, 1},
+		[]int{1, 1, 0, 0},
+		[]int{1, 1, 0, 1},
+		[]int{1, 0},
+		[]int{1, 1},
+		[]int{0},
+		[]int{1},
+		[]int{1, 1, 0},
+		[]int{1, 1, 1},
+		[]int{1, 0, 0},
+		[]int{1, 0, 1},
+		[]int{1, 1, 0, 1, 0},
+		[]int{1, 1, 0, 1, 0, 0, 1},
+	}
+
+	for i, d := range decimals {
+		result := number.ConvDecimalToNegaBinary(d)
+		if array.Equal(result, negaBinaries[i]) == false {
+			t.Errorf("Expected from %v: %v. Got: %v", d, negaBinaries[i], result)
+		}
+	}
+}
+
 func TestConvBinaryToDecimal(t *testing.T) {
 	binaries := [][]int{
 		[]int{0},
@@ -85,6 +129,50 @@ func TestConvBinaryToDecimal(t *testing.T) {
 
 	for i, b := range binaries {
 		result := number.ConvBinaryToDecimal(b)
+		if result != decimals[i] {
+			t.Errorf("Expected from %v: %v. Got: %v", b, decimals[i], result)
+		}
+	}
+}
+
+func TestConvNegaBinaryToDecimal(t *testing.T) {
+	negaBinaries := [][]int{
+		[]int{1, 0, 1, 0, 1, 0, 1},
+		[]int{1, 1, 1, 0, 1, 0, 0},
+		[]int{1, 1, 1, 1},
+		[]int{1, 1, 0, 0},
+		[]int{1, 1, 0, 1},
+		[]int{1, 0},
+		[]int{1, 1},
+		[]int{0},
+		[]int{1},
+		[]int{1, 1, 0},
+		[]int{1, 1, 1},
+		[]int{1, 0, 0},
+		[]int{1, 0, 1},
+		[]int{1, 1, 0, 1, 0},
+		[]int{1, 1, 0, 1, 0, 0, 1},
+	}
+	decimals := []int{
+		85,
+		52,
+		-5,
+		-4,
+		-3,
+		-2,
+		-1,
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		25,
+	}
+
+	for i, b := range negaBinaries {
+		result := number.ConvNegaBinaryToDecimal(b)
 		if result != decimals[i] {
 			t.Errorf("Expected from %v: %v. Got: %v", b, decimals[i], result)
 		}

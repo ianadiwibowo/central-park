@@ -20,6 +20,27 @@ func ConvDecimalToBinary(value int) []int {
 	return binary
 }
 
+// ConvDecimalToNegaBinary converts decimal (base 10) to negative binary (base -2) in 0-1 array format
+func ConvDecimalToNegaBinary(value int) []int {
+	if value == 0 {
+		return []int{0}
+	}
+
+	negaBinary := []int{}
+
+	for value != 0 {
+		remainder := value % -2
+		value = value / -2
+		if remainder < 0 {
+			remainder += 2
+			value += 1
+		}
+		negaBinary = append([]int{remainder}, negaBinary...)
+	}
+
+	return negaBinary
+}
+
 // ConvBinaryToDecimal converts binary (base 2) in 0-1 array format to decimal (base 10)
 func ConvBinaryToDecimal(value []int) int {
 	decimal := 0
@@ -27,6 +48,18 @@ func ConvBinaryToDecimal(value []int) int {
 	for i, b := range value {
 		power := len(value) - 1 - i
 		decimal += int(math.Pow(2, float64(power))) * b
+	}
+
+	return decimal
+}
+
+// ConvNegaBinaryToDecimal converts negative binary (base -2) in 0-1 array format to decimal (base 10)format
+func ConvNegaBinaryToDecimal(value []int) int {
+	decimal := 0
+
+	for i, b := range value {
+		power := len(value) - 1 - i
+		decimal += int(math.Pow(-2, float64(power))) * b
 	}
 
 	return decimal
