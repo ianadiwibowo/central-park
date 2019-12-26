@@ -1,27 +1,27 @@
-package queue
+package queueint
 
 import (
 	"fmt"
 )
 
-type Queue struct {
+type QueueInt struct {
 	Storage []int
 }
 
-// NewQueue creates a new empty queue
-func NewQueue() *Queue {
-	return &Queue{
+// NewQueueInt creates a new empty queue
+func NewQueueInt() *QueueInt {
+	return &QueueInt{
 		Storage: []int{},
 	}
 }
 
 // Enqueue puts the value to the end of the queue
-func (q *Queue) Enqueue(value int) {
+func (q *QueueInt) Enqueue(value int) {
 	q.Storage = append(q.Storage, value)
 }
 
 // Dequeue returns the front value and remove it from the queue
-func (q *Queue) Dequeue() int {
+func (q *QueueInt) Dequeue() int {
 	if q.IsEmpty() {
 		return -1
 	}
@@ -34,7 +34,7 @@ func (q *Queue) Dequeue() int {
 }
 
 // Peek returns the front value without dequeueing it from the queue
-func (q *Queue) Peek() int {
+func (q *QueueInt) Peek() int {
 	if q.IsEmpty() {
 		return -1
 	}
@@ -43,16 +43,16 @@ func (q *Queue) Peek() int {
 }
 
 // Clear empties the queue
-func (q *Queue) Clear() {
+func (q *QueueInt) Clear() {
 	q.Storage = []int{}
 }
 
 // IsEmpty tells whether the queue is empty (true) or not (false)
-func (q *Queue) IsEmpty() bool {
+func (q *QueueInt) IsEmpty() bool {
 	return len(q.Storage) == 0
 }
 
 // Print returns the human-readable format of the queue
-func (q *Queue) Print() string {
+func (q *QueueInt) Print() string {
 	return fmt.Sprintf("%v", q.Storage)
 }

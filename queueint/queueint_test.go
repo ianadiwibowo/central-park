@@ -1,13 +1,13 @@
-package queue_test
+package queueint_test
 
 import (
 	"testing"
 
-	"github.com/ianadiwibowo/central-park/queue"
+	"github.com/ianadiwibowo/central-park/queueint"
 )
 
-func TestNewQueue(t *testing.T) {
-	q := queue.NewQueue()
+func TestNewQueueInt(t *testing.T) {
+	q := queueint.NewQueueInt()
 
 	if q.Print() != "[]" {
 		t.Errorf("Expected: []. Got: %v", q.Print())
@@ -15,7 +15,7 @@ func TestNewQueue(t *testing.T) {
 }
 
 func TestEnqueue(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	q.Enqueue(5)
 	q.Enqueue(3)
 
@@ -25,7 +25,7 @@ func TestEnqueue(t *testing.T) {
 }
 
 func TestDequeue(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	q.Enqueue(5)
 	q.Enqueue(3)
 	q.Enqueue(1)
@@ -41,7 +41,7 @@ func TestDequeue(t *testing.T) {
 }
 
 func TestDequeueOnEmptyQueue(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	v := q.Dequeue()
 
 	if v != -1 {
@@ -54,7 +54,7 @@ func TestDequeueOnEmptyQueue(t *testing.T) {
 }
 
 func TestPeek(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	q.Enqueue(1)
 	q.Enqueue(2)
 	v := q.Peek()
@@ -69,7 +69,7 @@ func TestPeek(t *testing.T) {
 }
 
 func TestPeekOnEmptyQueue(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	v := q.Peek()
 
 	if v != -1 {
@@ -82,7 +82,7 @@ func TestPeekOnEmptyQueue(t *testing.T) {
 }
 
 func TestClear(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	q.Enqueue(10)
 	q.Enqueue(20)
 	q.Clear()
@@ -93,7 +93,7 @@ func TestClear(t *testing.T) {
 }
 
 func TestIsEmptyOnEmptyQueue(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 
 	if q.IsEmpty() == false {
 		t.Errorf("Expected: true, Got: %v", q.Print())
@@ -101,7 +101,7 @@ func TestIsEmptyOnEmptyQueue(t *testing.T) {
 }
 
 func TestIsEmptyOnNotEmptyQueue(t *testing.T) {
-	q := queue.NewQueue()
+	q := queueint.NewQueueInt()
 	q.Enqueue(1)
 
 	if q.IsEmpty() == true {
