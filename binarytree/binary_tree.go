@@ -3,6 +3,8 @@ package binarytree
 import (
 	"fmt"
 	"strings"
+
+	"github.com/ianadiwibowo/central-park/queue"
 )
 
 type BinaryTree struct {
@@ -95,7 +97,7 @@ func maxHeightPreOrder(currentNode *BinaryTreeNode, maxHeight int) int {
 	return 0
 }
 
-// PrintPreOrder returns the pre-ordered human-readable format of the binary tree
+// PrintPreOrder returns the pre-ordered (depth first) human-readable format of the binary tree
 func (b *BinaryTree) PrintPreOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printPreOrder(b.Root, "")))
 }
@@ -110,7 +112,7 @@ func printPreOrder(currentNode *BinaryTreeNode, previousPrintout string) (printo
 	return previousPrintout
 }
 
-// PrintInOrder returns the in-ordered human-readable format of the binary tree
+// PrintInOrder returns the in-ordered (depth first) human-readable format of the binary tree
 func (b *BinaryTree) PrintInOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printInOrder(b.Root, "")))
 }
@@ -125,7 +127,7 @@ func printInOrder(currentNode *BinaryTreeNode, previousPrintout string) string {
 	return previousPrintout
 }
 
-// PrintPostOrder returns the post-ordered human-readable format of the binary tree
+// PrintPostOrder returns the post-ordered (depth first) human-readable format of the binary tree
 func (b *BinaryTree) PrintPostOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printPostOrder(b.Root, "")))
 }
@@ -140,33 +142,28 @@ func printPostOrder(currentNode *BinaryTreeNode, previousPrintout string) string
 	return previousPrintout
 }
 
-// PrintLevelOrder returns the level-ordered human-readable format of the binary tree
-// func (b *BinaryTree) PrintLevelOrder() string {
-// 	return fmt.Sprintf("[%v]", strings.TrimSpace(printLevelOrder(b.Root, "")))
-// }
+// PrintLevelOrder returns the level-ordered (breadth first) human-readable format of the binary tree
+func (b *BinaryTree) PrintLevelOrder() (printout string) {
+	queue := queue.NewQueue()
+	queue.Enqueue(b.Root)
 
-// func printLevelOrder(currentNode *BinaryTreeNode, previousPrintout string) (printout string) {
-// 	if currentNode != nil {
-// 		leftPrintout := printLevelOrder(currentNode.Left, previousPrintout)
-// 		printout = fmt.Sprintf("%v %v", leftPrintout, currentNode.Value)
-// 		return printLevelOrder(currentNode.Right, printout)
-// 	}
+	for !queue.IsEmpty() {
+		currentNode := queue.Dequeue().(*BinaryTreeNode)
+		printout = fmt.Sprintf("%v %v", printout, currentNode.Value)
 
-// 	return previousPrintout
-// }
+		if currentNode.Left != nil {
+			queue.Enqueue(currentNode.Left)
+		}
 
-// func next(stack *Stack) string {
-// 	if stack.IsEmpty() {
-// 		return ""
-// 	}
+		if currentNode.Right != nil {
+			queue.Enqueue(currentNode.Right)
+		}
+	}
 
-// 	currentNode := stack.Pop()
-// 	if currentNode.Right != nil {
-// 		stack.Push(currentNode.Right)
-// 	}
-// 	if currentNode.Left != nil {
-// 		stack.Push(currentNode.Left)
-// 	}
+	return fmt.Sprintf("[%v]", strings.TrimSpace(printout))
+}
 
-// 	return currentNode.value
-// }
+// IsLeaf checks whether a binary tree node is leaf (true) or not (false)
+func (b *BinaryTreeNode) IsLeaf() bool {
+	return b.Left == nil && b.Right == nil
+}

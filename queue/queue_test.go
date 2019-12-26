@@ -1,10 +1,10 @@
-package queuestruct_test
+package queue_test
 
 import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/ianadiwibowo/central-park/queuestruct"
+	"github.com/ianadiwibowo/central-park/queue"
 )
 
 // cat demonstrates that a custom struct can be used as the queue internal data structure
@@ -14,7 +14,7 @@ type cat struct {
 }
 
 func TestNewQueue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 
 	if q.Print() != "[]" {
 		t.Errorf("Expected: []. Got: %v", q.Print())
@@ -22,7 +22,7 @@ func TestNewQueue(t *testing.T) {
 }
 
 func TestEnqueue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	q.Enqueue(&cat{1, "Pupuru"})
 	q.Enqueue(&cat{3, "Hosico"})
 
@@ -32,7 +32,7 @@ func TestEnqueue(t *testing.T) {
 }
 
 func TestDequeue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	q.Enqueue(&cat{5, "Yuen Jumbo"})
 	q.Enqueue(&cat{3, "Fomo"})
 	q.Enqueue(&cat{1, "Ah Fei"})
@@ -48,7 +48,7 @@ func TestDequeue(t *testing.T) {
 }
 
 func TestDequeueOnEmptyQueue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	v := q.Dequeue()
 
 	if v != nil {
@@ -61,7 +61,7 @@ func TestDequeueOnEmptyQueue(t *testing.T) {
 }
 
 func TestPeek(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	q.Enqueue(&cat{1, "Lupita"})
 	q.Enqueue(&cat{2, "Bombi"})
 	v := q.Peek().(*cat)
@@ -76,7 +76,7 @@ func TestPeek(t *testing.T) {
 }
 
 func TestPeekOnEmptyQueue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	v := q.Peek()
 
 	if v != nil {
@@ -89,7 +89,7 @@ func TestPeekOnEmptyQueue(t *testing.T) {
 }
 
 func TestClear(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	q.Enqueue(&cat{10, "Simabossneko"})
 	q.Enqueue(&cat{20, "Big Billy"})
 	q.Clear()
@@ -100,7 +100,7 @@ func TestClear(t *testing.T) {
 }
 
 func TestIsEmptyOnEmptyQueue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 
 	if q.IsEmpty() == false {
 		t.Errorf("Expected: true, Got: %v", q.Print())
@@ -108,7 +108,7 @@ func TestIsEmptyOnEmptyQueue(t *testing.T) {
 }
 
 func TestIsEmptyOnNotEmptyQueue(t *testing.T) {
-	q := queuestruct.NewQueueStruct()
+	q := queue.NewQueue()
 	q.Enqueue(&cat{7, "Bellamy"})
 
 	if q.IsEmpty() == true {

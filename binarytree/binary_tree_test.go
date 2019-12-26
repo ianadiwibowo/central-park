@@ -208,20 +208,58 @@ func TestPrintPostOrder(t *testing.T) {
 	}
 }
 
-// func TestPrintLevelOrder(t *testing.T) {
-// 	b := binarytree.NewBinaryTree()
-// 	b.SetRoot(8)
-// 	b.InsertLeft(5, 8)
-// 	b.InsertLeft(9, 5)
-// 	b.InsertRight(7, 5)
-// 	b.InsertLeft(1, 7)
-// 	b.InsertRight(12, 7)
-// 	b.InsertLeft(2, 12)
-// 	b.InsertRight(4, 8)
-// 	b.InsertRight(11, 4)
-// 	b.InsertLeft(3, 11)
+func TestPrintLevelOrder(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(8)
+	b.InsertLeft(5, 8)
+	b.InsertLeft(9, 5)
+	b.InsertRight(7, 5)
+	b.InsertLeft(1, 7)
+	b.InsertRight(12, 7)
+	b.InsertLeft(2, 12)
+	b.InsertRight(4, 8)
+	b.InsertRight(11, 4)
+	b.InsertLeft(3, 11)
 
-// 	if b.PrintLevelOrder() != "[8 5 4 9 7 11 1 12 3 2]" {
-// 		t.Errorf("Expected: [8 5 4 9 7 11 1 12 3 2]. Got: %v", b.PrintLevelOrder())
-// 	}
-// }
+	if b.PrintLevelOrder() != "[8 5 4 9 7 11 1 12 3 2]" {
+		t.Errorf("Expected: [8 5 4 9 7 11 1 12 3 2]. Got: %v", b.PrintLevelOrder())
+	}
+}
+
+func TestIsLeaf(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(8)
+	b.InsertLeft(5, 8)
+	b.InsertLeft(9, 5)
+	b.InsertRight(7, 5)
+	b.InsertLeft(1, 7)
+	b.InsertRight(12, 7)
+	b.InsertLeft(2, 12)
+	b.InsertRight(4, 8)
+	b.InsertRight(11, 4)
+	b.InsertLeft(3, 11)
+
+	if b.Find(9).IsLeaf() == false {
+		t.Error("Expected: true, Got: false")
+	}
+
+	if b.Find(1).IsLeaf() == false {
+		t.Error("Expected: true, Got: false")
+	}
+
+	if b.Find(3).IsLeaf() == false {
+		t.Error("Expected: true, Got: false")
+	}
+
+	if b.Find(5).IsLeaf() == true {
+		t.Error("Expected: false, Got: true")
+	}
+
+	if b.Find(12).IsLeaf() == true {
+		t.Error("Expected: false, Got: true")
+	}
+
+	if b.Find(8).IsLeaf() == true {
+		t.Error("Expected: false, Got: true")
+	}
+}
