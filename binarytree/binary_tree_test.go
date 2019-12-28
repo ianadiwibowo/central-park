@@ -3,6 +3,7 @@ package binarytree_test
 import (
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/ianadiwibowo/central-park/binarytree"
 )
 
@@ -154,7 +155,89 @@ func TestHeightOnEmptyTree(t *testing.T) {
 	}
 }
 
-func TestBinaryPrintPreOrder(t *testing.T) {
+func TestFindCompletePaths(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(1)
+	b.InsertLeft(2, 1)
+	b.InsertLeft(4, 2)
+	b.InsertRight(5, 2)
+	b.InsertRight(3, 1)
+	b.InsertLeft(6, 3)
+	b.InsertRight(7, 3)
+
+	expected := [][]int{
+		[]int{1, 2, 4},
+		[]int{1, 2, 5},
+		[]int{1, 3, 6},
+		[]int{1, 3, 7},
+	}
+	result := b.FindCompletePaths()
+	if cmp.Equal(result, expected) == false {
+		t.Errorf("Expected: %v. Got: %v", expected, result)
+	}
+}
+
+func TestFindCompletePathsWithHalfLeaves(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(1)
+	b.InsertLeft(2, 1)
+	b.InsertLeft(3, 2)
+	b.InsertLeft(4, 3)
+	b.InsertRight(5, 2)
+	b.InsertLeft(6, 5)
+	b.InsertRight(7, 1)
+	b.InsertLeft(8, 7)
+	b.InsertLeft(9, 8)
+	b.InsertRight(10, 7)
+	b.InsertLeft(11, 10)
+
+	expected := [][]int{
+		[]int{1, 2, 3, 4},
+		[]int{1, 2, 5, 6},
+		[]int{1, 7, 8, 9},
+		[]int{1, 7, 10, 11},
+	}
+	result := b.FindCompletePaths()
+	if cmp.Equal(result, expected) == false {
+		t.Errorf("Expected: %v. Got: %v", expected, result)
+	}
+}
+
+func TestFindCompletePathsWithBiggerCompleteLeaves(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(1)
+	b.InsertLeft(2, 1)
+	b.InsertLeft(3, 2)
+	b.InsertLeft(4, 3)
+	b.InsertRight(12, 3)
+	b.InsertRight(5, 2)
+	b.InsertLeft(6, 5)
+	b.InsertRight(13, 5)
+	b.InsertRight(7, 1)
+	b.InsertLeft(8, 7)
+	b.InsertLeft(9, 8)
+	b.InsertRight(14, 8)
+	b.InsertRight(10, 7)
+	b.InsertLeft(11, 10)
+	b.InsertRight(15, 10)
+
+	expected := [][]int{
+		[]int{1, 2, 3, 4},
+		[]int{1, 2, 3, 12},
+		[]int{1, 2, 5, 6},
+		[]int{1, 2, 5, 13},
+		[]int{1, 7, 8, 9},
+		[]int{1, 7, 8, 14},
+		[]int{1, 7, 10, 11},
+		[]int{1, 7, 10, 15},
+	}
+	result := b.FindCompletePaths()
+	if cmp.Equal(result, expected) == false {
+		t.Errorf("Expected: %v. Got: %v", expected, result)
+	}
+}
+
+func TestPrintPreOrder(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
 	b.InsertLeft(5, 8)

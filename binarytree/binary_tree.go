@@ -97,19 +97,42 @@ func maxHeightPreOrder(currentNode *BinaryTreeNode, maxHeight int) int {
 	return 0
 }
 
+// FindCompletePaths find all complete paths from root to all leaves
+func (b *BinaryTree) FindCompletePaths() [][]int {
+	return findCompletePaths(b.Root, []int{}, [][]int{})
+}
+
+func findCompletePaths(currentNode *BinaryTreeNode, path []int, prevResults [][]int) [][]int {
+	if currentNode != nil {
+		updatedPath := make([]int, len(path)+1)
+		copy(updatedPath, append(path, currentNode.Value))
+
+		if currentNode.IsLeaf() {
+			updatedPrevResults := make([][]int, len(prevResults)+1)
+			copy(updatedPrevResults, append(prevResults, updatedPath))
+
+			return updatedPrevResults
+		}
+		prevResults = findCompletePaths(currentNode.Left, updatedPath, prevResults)
+		prevResults = findCompletePaths(currentNode.Right, updatedPath, prevResults)
+	}
+
+	return prevResults
+}
+
 // PrintPreOrder returns the pre-ordered (depth first) human-readable format of the binary tree
 func (b *BinaryTree) PrintPreOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printPreOrder(b.Root, "")))
 }
 
-func printPreOrder(currentNode *BinaryTreeNode, previousPrintout string) (printout string) {
+func printPreOrder(currentNode *BinaryTreeNode, prevPrintout string) (printout string) {
 	if currentNode != nil {
-		printout = fmt.Sprintf("%v %v", previousPrintout, currentNode.Value)
-		leftPrintout := printPreOrder(currentNode.Left, printout)
-		return printPreOrder(currentNode.Right, leftPrintout)
+		printout = fmt.Sprintf("%v %v", prevPrintout, currentNode.Value)
+		printout := printPreOrder(currentNode.Left, printout)
+		return printPreOrder(currentNode.Right, printout)
 	}
 
-	return previousPrintout
+	return prevPrintout
 }
 
 // PrintInOrder returns the in-ordered (depth first) human-readable format of the binary tree
@@ -117,14 +140,14 @@ func (b *BinaryTree) PrintInOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printInOrder(b.Root, "")))
 }
 
-func printInOrder(currentNode *BinaryTreeNode, previousPrintout string) string {
+func printInOrder(currentNode *BinaryTreeNode, prevPrintout string) string {
 	if currentNode != nil {
-		leftPrintout := printInOrder(currentNode.Left, previousPrintout)
-		currentPrintout := fmt.Sprintf("%v %v", leftPrintout, currentNode.Value)
-		return printInOrder(currentNode.Right, currentPrintout)
+		printout := printInOrder(currentNode.Left, prevPrintout)
+		printout = fmt.Sprintf("%v %v", printout, currentNode.Value)
+		return printInOrder(currentNode.Right, printout)
 	}
 
-	return previousPrintout
+	return prevPrintout
 }
 
 // PrintPostOrder returns the post-ordered (depth first) human-readable format of the binary tree
@@ -132,14 +155,14 @@ func (b *BinaryTree) PrintPostOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printPostOrder(b.Root, "")))
 }
 
-func printPostOrder(currentNode *BinaryTreeNode, previousPrintout string) string {
+func printPostOrder(currentNode *BinaryTreeNode, prevPrintout string) string {
 	if currentNode != nil {
-		leftPrintout := printPostOrder(currentNode.Left, previousPrintout)
-		rightPrintout := printPostOrder(currentNode.Right, leftPrintout)
-		return fmt.Sprintf("%v %v", rightPrintout, currentNode.Value)
+		printout := printPostOrder(currentNode.Left, prevPrintout)
+		printout = printPostOrder(currentNode.Right, printout)
+		return fmt.Sprintf("%v %v", printout, currentNode.Value)
 	}
 
-	return previousPrintout
+	return prevPrintout
 }
 
 // PrintLevelOrder returns the level-ordered (breadth first) human-readable format of the binary tree
@@ -164,6 +187,6 @@ func (b *BinaryTree) PrintLevelOrder() (printout string) {
 }
 
 // IsLeaf checks whether a binary tree node is leaf (true) or not (false)
-func (b *BinaryTreeNode) IsLeaf() bool {
-	return b.Left == nil && b.Right == nil
+func (btn *BinaryTreeNode) IsLeaf() bool {
+	return btn.Left == nil && btn.Right == nil
 }
