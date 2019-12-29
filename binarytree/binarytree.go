@@ -19,9 +19,7 @@ type BinaryTreeNode struct {
 
 // NewBinaryTree creates a new empty binary tree
 func NewBinaryTree() *BinaryTree {
-	return &BinaryTree{
-		Root: nil,
-	}
+	return &BinaryTree{}
 }
 
 // SetRoot assign a new value's node as the tree root

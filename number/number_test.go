@@ -3,7 +3,7 @@ package number_test
 import (
 	"testing"
 
-	"github.com/ianadiwibowo/central-park/array"
+	"github.com/google/go-cmp/cmp"
 	"github.com/ianadiwibowo/central-park/number"
 )
 
@@ -43,7 +43,7 @@ func TestConvDecimalToBinary(t *testing.T) {
 
 	for i, d := range decimals {
 		result := number.ConvDecimalToBinary(d)
-		if array.Equal(result, binaries[i]) == false {
+		if cmp.Equal(result, binaries[i]) == false {
 			t.Errorf("Expected from %v: %v. Got: %v", d, binaries[i], result)
 		}
 	}
@@ -87,7 +87,7 @@ func TestConvDecimalToNegaBinary(t *testing.T) {
 
 	for i, d := range decimals {
 		result := number.ConvDecimalToNegaBinary(d)
-		if array.Equal(result, negaBinaries[i]) == false {
+		if cmp.Equal(result, negaBinaries[i]) == false {
 			t.Errorf("Expected from %v: %v. Got: %v", d, negaBinaries[i], result)
 		}
 	}
@@ -222,7 +222,7 @@ func TestAddBinary(t *testing.T) {
 
 	for i, v := range a {
 		result := number.AddBinary(v, b[i])
-		if array.Equal(result, expected[i]) == false {
+		if cmp.Equal(result, expected[i]) == false {
 			t.Errorf("Expected from %v + %v: %v. Got: %v", v, b[i], expected[i], result)
 		}
 	}
@@ -234,7 +234,7 @@ func TestPadLeftWithZero(t *testing.T) {
 	expected := []int{0, 0, 0, 0, 0, 1, 2, 3, 4}
 	result := number.PadLeftWithZero(a, zeroCount)
 
-	if array.Equal(result, expected) == false {
+	if cmp.Equal(result, expected) == false {
 		t.Errorf("Expected: %v. Got: %v", expected, result)
 	}
 }

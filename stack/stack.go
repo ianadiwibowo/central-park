@@ -10,9 +10,7 @@ type Stack struct {
 
 // NewStack creates a new empty stack
 func NewStack() *Stack {
-	return &Stack{
-		Storage: []int{},
-	}
+	return &Stack{}
 }
 
 // Push puts the value to the top of the stack

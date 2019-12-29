@@ -10,9 +10,7 @@ type QueueInt struct {
 
 // NewQueueInt creates a new empty queue
 func NewQueueInt() *QueueInt {
-	return &QueueInt{
-		Storage: []int{},
-	}
+	return &QueueInt{}
 }
 
 // Enqueue puts the value to the end of the queue
