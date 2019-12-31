@@ -260,3 +260,15 @@ func TestAddBinaryDigit(t *testing.T) {
 		}
 	}
 }
+
+func TestFactorial(t *testing.T) {
+	a_cases := []int{0, 1, 2, 3, 4, 5, 6}
+	expectedResults := []int{1, 1, 2, 6, 24, 120, 720}
+
+	for i, v := range a_cases {
+		result := number.Factorial(v)
+		if result != expectedResults[i] {
+			t.Errorf("Expected from %v: %v. Got: %v", v, expectedResults[i], result)
+		}
+	}
+}

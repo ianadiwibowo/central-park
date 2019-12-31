@@ -113,3 +113,17 @@ func AddBinaryDigit(a, b, carry int) (result int, carryOut int) {
 
 	return result, carryOut
 }
+
+// Factorial returns the factorial of a, e.g. 6! = 6 * 5 * 4 * 3 * 2 * 1 = 720
+func Factorial(a int) int {
+	if a == 0 {
+		return 1
+	}
+
+	return a * Factorial(a-1)
+}
+
+// BinomialCoefficient TODO PUPURUNEKO
+func BinomialCoefficient(n, r int) int {
+	return -777
+}
