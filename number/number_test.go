@@ -272,3 +272,16 @@ func TestFactorial(t *testing.T) {
 		}
 	}
 }
+
+func TestBinomialCoefficient(t *testing.T) {
+	n_cases := []int{5, 3, 15, 5, 10, 0, 7}
+	k_cases := []int{2, 2, 4, 4, 3, 2, 7}
+	expectedResults := []int{10, 3, 1365, 5, 120, 0, 1}
+
+	for i, v := range n_cases {
+		result := number.BinomialCoefficient(v, k_cases[i])
+		if result != expectedResults[i] {
+			t.Errorf("Expected from %v, %v: %v. Got: %v", v, k_cases[i], expectedResults[i], result)
+		}
+	}
+}

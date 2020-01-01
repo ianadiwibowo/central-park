@@ -115,6 +115,7 @@ func AddBinaryDigit(a, b, carry int) (result int, carryOut int) {
 }
 
 // Factorial returns the factorial of a, e.g. 6! = 6 * 5 * 4 * 3 * 2 * 1 = 720
+// SLOW!!!
 func Factorial(a int) int {
 	if a == 0 {
 		return 1
@@ -123,7 +124,12 @@ func Factorial(a int) int {
 	return a * Factorial(a-1)
 }
 
-// BinomialCoefficient TODO PUPURUNEKO
-func BinomialCoefficient(n, r int) int {
-	return -777
+// BinomialCoefficient returns number of possible k combinations from n items
+// SLOW!!!
+func BinomialCoefficient(n, k int) int {
+	if n < k {
+		return 0
+	}
+
+	return Factorial(n) / (Factorial(k) * Factorial(n-k))
 }
