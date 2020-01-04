@@ -1,6 +1,7 @@
 package array
 
 // Equal checks whether two slices a and b are identical (true) or not (false)
+// DEPRECATED, use cmp.Equal instead
 func Equal(a, b []int) bool {
 	if len(a) != len(b) {
 		return false
