@@ -148,3 +148,31 @@ func TestMax(t *testing.T) {
 		}
 	}
 }
+
+func TestReverse(t *testing.T) {
+	a_cases := [][]int{
+		{1, 2, 3, 4, 5, 6, 7},
+		{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90},
+		{6, 6, 6},
+		{-1},
+		{},
+		{-1, -2, -3, -4},
+		{-1, -2, -3, -4, -5},
+	}
+	expectations := [][]int{
+		{7, 6, 5, 4, 3, 2, 1},
+		{90, 1, 7, 7, 3, -800, 6, 2, 3, 5, 10},
+		{6, 6, 6},
+		{-1},
+		{},
+		{-4, -3, -2, -1},
+		{-5, -4, -3, -2, -1},
+	}
+
+	for i, v := range a_cases {
+		result := array.Reverse(v)
+		if cmp.Equal(result, expectations[i]) != true {
+			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
+		}
+	}
+}

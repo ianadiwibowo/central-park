@@ -103,3 +103,17 @@ func Max(a []int) (maxValue int) {
 
 	return maxValue
 }
+
+// Reverse returns the array a in reversed order
+func Reverse(a []int) []int {
+	reversed := make([]int, len(a))
+	copy(reversed, a)
+
+	for i := 0; i < len(reversed)/2; i++ {
+		temp := reversed[i]
+		reversed[i] = reversed[len(a)-1-i]
+		reversed[len(a)-1-i] = temp
+	}
+
+	return reversed
+}
