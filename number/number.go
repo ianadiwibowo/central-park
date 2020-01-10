@@ -2,7 +2,6 @@ package number
 
 import (
 	"math"
-	"sort"
 )
 
 // ConvDecimalToBinary converts decimal (base 10) to binary (base 2) in 0-1 array format
@@ -133,31 +132,4 @@ func BinomialCoefficient(n, k int) int {
 	}
 
 	return Factorial(n) / (Factorial(k) * Factorial(n-k))
-}
-
-// Mean calculates the average of the array a
-func Mean(a []int) float64 {
-	var sum float64
-	for _, v := range a {
-		sum += float64(v)
-	}
-
-	return sum / float64(len(a))
-}
-
-// Median calculates the middle value of the array a
-func Median(a []int) float64 {
-	sort.Ints(a)
-
-	if len(a)%2 == 1 {
-		midIndex := (len(a) + 1) / 2
-
-		return float64(a[midIndex])
-	} else {
-		midIndex1 := len(a)/2 - 1
-		midIndex2 := midIndex1 + 1
-		sum := a[midIndex1] + a[midIndex2]
-
-		return float64(sum) / 2
-	}
 }

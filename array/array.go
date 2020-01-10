@@ -1,5 +1,7 @@
 package array
 
+import "sort"
+
 // BubbleSort sorts the array a using Bubble Sort algorithm
 func BubbleSort(a []int) (sorted []int) {
 	sorted = make([]int, len(a))
@@ -41,4 +43,63 @@ func Equal(a, b []int) bool {
 	}
 
 	return true
+}
+
+// Mean calculates the average of array a
+func Mean(a []int) float64 {
+	var sum float64
+	for _, v := range a {
+		sum += float64(v)
+	}
+
+	return sum / float64(len(a))
+}
+
+// Median calculates the middle value of array a
+func Median(a []int) float64 {
+	sort.Ints(a)
+
+	if len(a)%2 == 1 {
+		midIndex := len(a) / 2
+
+		return float64(a[midIndex])
+	} else {
+		midIndex1 := len(a)/2 - 1
+		midIndex2 := midIndex1 + 1
+		sum := a[midIndex1] + a[midIndex2]
+
+		return float64(sum) / 2
+	}
+}
+
+// Min finds the minimum value of array a
+func Min(a []int) (minValue int) {
+	if len(a) == 0 {
+		return 0
+	}
+
+	minValue = a[0]
+	for _, v := range a {
+		if v < minValue {
+			minValue = v
+		}
+	}
+
+	return minValue
+}
+
+// Max finds the maximum value of array a
+func Max(a []int) (maxValue int) {
+	if len(a) == 0 {
+		return 0
+	}
+
+	maxValue = a[0]
+	for _, v := range a {
+		if v > maxValue {
+			maxValue = v
+		}
+	}
+
+	return maxValue
 }
