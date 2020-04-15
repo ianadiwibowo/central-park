@@ -1,9 +1,9 @@
-package data_structures/linkedlist_test
+package linkedlist_test
 
 import (
 	"testing"
 
-	"github.com/ianadiwibowo/central-park/linkedlist"
+	"github.com/ianadiwibowo/central-park/datastructures/linkedlist"
 )
 
 func TestNewLinkedList(t *testing.T) {

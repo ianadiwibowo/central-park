@@ -1,10 +1,10 @@
-package data_structures/binarytree_test
+package binarytree_test
 
 import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/ianadiwibowo/central-park/binarytree"
+	"github.com/ianadiwibowo/central-park/datastructures/binarytree"
 )
 
 func TestNewBinaryTree(t *testing.T) {

@@ -1,10 +1,10 @@
-package data_structures/_test
+package number_test
 
 import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/ianadiwibowo/central-park/number"
+	"github.com/ianadiwibowo/central-park/datastructures/number"
 )
 
 func TestConvDecimalToBinary(t *testing.T) {

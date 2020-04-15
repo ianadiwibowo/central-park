@@ -1,10 +1,10 @@
-package data_structures/queue_test
+package queue_test
 
 import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/ianadiwibowo/central-park/queue"
+	"github.com/ianadiwibowo/central-park/datastructures/queue"
 )
 
 // cat demonstrates that a custom struct can be used as the queue internal data structure

@@ -1,9 +1,9 @@
-package data_structures/stack_test
+package stack_test
 
 import (
 	"testing"
 
-	stack "github.com/ianadiwibowo/central-park/stack"
+	stack "github.com/ianadiwibowo/central-park/datastructures/stack"
 )
 
 func TestStackNewStack(t *testing.T) {

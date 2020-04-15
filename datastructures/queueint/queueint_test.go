@@ -1,9 +1,9 @@
-package data_structures/queueint_test
+package queueint_test
 
 import (
 	"testing"
 
-	"github.com/ianadiwibowo/central-park/queueint"
+	"github.com/ianadiwibowo/central-park/datastructures/queueint"
 )
 
 func TestNewQueueInt(t *testing.T) {

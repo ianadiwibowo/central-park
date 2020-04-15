@@ -1,10 +1,10 @@
-package data_structures/binarytree
+package binarytree
 
 import (
 	"fmt"
 	"strings"
 
-	"github.com/ianadiwibowo/central-park/queue"
+	"github.com/ianadiwibowo/central-park/datastructures/queue"
 )
 
 type BinaryTree struct {

@@ -1,4 +1,4 @@
-package data_structures/stack
+package stack
 
 import (
 	"fmt"
