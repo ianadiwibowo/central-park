@@ -106,3 +106,24 @@ func TestReverse(t *testing.T) {
 		array.Reverse([]int{-1, -2, -3, -4, -5}),
 	)
 }
+
+func TestUniq_GivenEmptyInput_ReturnsZero(t *testing.T) {
+	assert.Equal(t, []int{0}, array.Uniq([]int{}))
+}
+
+func TestUniq_GivenDistinctInput_ReturnsInput(t *testing.T) {
+	assert.Equal(t, []int{1}, array.Uniq([]int{1}))
+	assert.Equal(t, []int{1, 2, 3}, array.Uniq([]int{1, 2, 3}))
+}
+
+func TestUniq_GivenNonDistinctInput_ReturnsDistinctOutput(t *testing.T) {
+	assert.Equal(t, []int{1}, array.Uniq([]int{1, 1}))
+	assert.Equal(t, []int{1, 2}, array.Uniq([]int{1, 1, 2, 2}))
+	assert.Equal(t, []int{3, 1, 2}, array.Uniq([]int{3, 1, 1, 2, 2}))
+	assert.Equal(t, []int{7, 6, 5, 10},
+		array.Uniq([]int{7, 6, 7, 7, 5, 6, 10, 5, 10, 7}),
+	)
+	assert.Equal(t, []int{11, 10, 9, 1},
+		array.Uniq([]int{11, 10, 11, 10, 9, 9, 1}),
+	)
+}

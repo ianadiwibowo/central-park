@@ -87,3 +87,34 @@ func Reverse(a []int) []int {
 
 	return reversed
 }
+
+// Uniq returns distinct elements from the array a while preserving order
+func Uniq(a []int) (result []int) {
+	if len(a) == 0 {
+		return []int{0}
+	}
+
+	distinct := make(map[int]bool)
+	for _, v := range a {
+		distinct[v] = true
+	}
+
+	// This is needed to preserve order
+	for _, v := range a {
+		if distinct[v] {
+			result = append(result, v)
+			delete(distinct, v)
+		}
+	}
+	return result
+}
+
+// TODO
+func Union(a, b []int) (result []int) {
+	return []int{}
+}
+
+// TODO
+func Intersection(a, b []int) (result []int) {
+	return []int{}
+}
