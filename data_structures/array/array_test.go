@@ -1,4 +1,4 @@
-package array_test
+package data_structures/array_test
 
 import (
 	"testing"

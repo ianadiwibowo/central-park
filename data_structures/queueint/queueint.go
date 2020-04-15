@@ -1,4 +1,4 @@
-package queueint
+package data_structures/queueint
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package number_test
+package data_structures/_test
 
 import (
 	"testing"

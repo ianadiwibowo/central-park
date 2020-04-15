@@ -3,6 +3,8 @@ package main
 var biggestSize int32
 var group, size map[int32]int32
 
+// This solution uses a magical data structure called:
+// Disjoint-Set (aka Union-Find or Merge-Find)
 func MaxCircle(queries [][]int32) (result []int32) {
 	initialize()
 	for _, q := range queries {

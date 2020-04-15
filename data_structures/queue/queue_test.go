@@ -1,4 +1,4 @@
-package queue_test
+package data_structures/queue_test
 
 import (
 	"testing"

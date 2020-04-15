@@ -1,4 +1,4 @@
-package binarytree_test
+package data_structures/binarytree_test
 
 import (
 	"testing"

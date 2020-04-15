@@ -1,4 +1,4 @@
-package array
+package data_structures/array
 
 import (
 	"sort"

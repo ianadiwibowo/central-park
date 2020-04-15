@@ -1,4 +1,4 @@
-package linkedlist_test
+package data_structures/linkedlist_test
 
 import (
 	"testing"

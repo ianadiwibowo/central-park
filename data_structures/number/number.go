@@ -1,4 +1,4 @@
-package number
+package data_structures/number
 
 import (
 	"math"

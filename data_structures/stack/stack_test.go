@@ -1,4 +1,4 @@
-package stack_test
+package data_structures/stack_test
 
 import (
 	"testing"
