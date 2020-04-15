@@ -1,0 +1,61 @@
+package main
+
+func MaxCircle(queries [][]int32) (largestSizes []int32) {
+	friendships := [][]int32{}
+	friendshipLocator := make(map[int32]int)
+
+	// Checking each person existing friendship
+	for _, query := range queries {
+		var sets [2][]int32
+		for i, person := range query {
+			index := friendshipLocator[person]
+			if index != 0 {
+				sets[i] = friendships[index-1]
+			} else {
+				sets[i] = []int32{person}
+			}
+		}
+
+		// Make them friends
+		newFriendship := append(sets[0], sets[1]...)
+		friendships = append(friendships, newFriendship)
+
+		friendshipLocator = update(friendshipLocator, friendships, newFriendship)
+		largestSizes = findLargestSize(largestSizes, newFriendship)
+	}
+
+	return largestSizes
+}
+
+func update(
+	friendshipLocator map[int32]int,
+	friendships [][]int32,
+	newFriendship []int32,
+) map[int32]int {
+	lastFriendGroupIndex := len(friendships)
+	for _, person := range newFriendship {
+		friendshipLocator[person] = lastFriendGroupIndex
+	}
+	return friendshipLocator
+}
+
+func findLargestSize(largestSizes []int32, newFriendship []int32) []int32 {
+	prevLargestSize := getPrevLargestSize(largestSizes)
+
+	newSize := int32(len(newFriendship))
+	if newSize > prevLargestSize {
+		largestSizes = append(largestSizes, newSize)
+	} else {
+		largestSizes = append(largestSizes, prevLargestSize)
+	}
+
+	return largestSizes
+}
+
+func getPrevLargestSize(largestSizes []int32) (prevLargestSize int32) {
+	l := len(largestSizes)
+	if l > 0 {
+		prevLargestSize = largestSizes[l-1]
+	}
+	return prevLargestSize
+}

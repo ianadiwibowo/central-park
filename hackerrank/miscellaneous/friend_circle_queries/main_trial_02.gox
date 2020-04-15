@@ -1,0 +1,65 @@
+package main
+
+func MaxCircle(queries [][]int32) (largestSizes []int32) {
+	friendships := make([][]int32, len(queries))
+	friendshipLocator := make(map[int32]int)
+	var prevLargestSize int32
+
+	// Checking each person existing friendship
+	for _, query := range queries { // O(N)
+		var sets [2][]int32
+		var newFriendship []int32
+
+		if friendshipLocator[query[0]] == friendshipLocator[query[1]] && friendshipLocator[query[0]] != 0 {
+			newFriendship = friendships[friendshipLocator[query[0]]-1]
+		} else {
+			for i, person := range query { // O(2)
+				index := friendshipLocator[person]
+				if index != 0 {
+					sets[i] = friendships[index-1]
+					friendships[index-1] = []int32{}
+				} else {
+					sets[i] = []int32{person}
+				}
+			}
+
+			// Make them friends
+			newFriendship = append(sets[0], sets[1]...)
+		}
+
+		// fmt.Println("newFriendship:", newFriendship)
+		friendships = append(friendships, newFriendship)
+		// fmt.Println("friendships:", friendships)
+
+		// Update friendshipLocater with latest index
+		for _, p := range newFriendship {
+			friendshipLocator[p] = len(friendships)
+		}
+
+		// Find largest friendship size
+		newSize := int32(len(newFriendship))
+		if newSize > prevLargestSize {
+			largestSizes = append(largestSizes, newSize)
+			prevLargestSize = newSize
+		} else {
+			largestSizes = append(largestSizes, prevLargestSize)
+		}
+	}
+
+	return largestSizes
+}
+
+// func union(sets [2][]int32) (result []int32) {
+// 	uniqueElements := make(map[int32]bool)
+// 	for _, s := range sets {
+// 		for _, v := range s {
+// 			uniqueElements[v] = true
+// 		}
+// 	}
+
+// 	for k := range uniqueElements {
+// 		result = append(result, k)
+// 	}
+
+// 	return result
+// }

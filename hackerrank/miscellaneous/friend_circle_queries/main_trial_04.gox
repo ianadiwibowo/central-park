@@ -1,0 +1,60 @@
+package main
+
+const population = 10
+
+var biggestSize int32
+var group, size [population]int32
+
+func MaxCircle(queries [][]int32) (result []int32) {
+	initialize()
+
+	for _, q := range queries {
+		person1 := q[0] - 1
+		person2 := q[1] - 1
+
+		if !isFriend(person1, person2) {
+			makeFriend(person1, person2)
+		}
+
+		result = append(result, biggestSize)
+	}
+
+	return result
+}
+
+func initialize() {
+	for i := 0; i < population; i++ {
+		group[i] = int32(i)
+		size[i] = 1
+	}
+	biggestSize = 0
+}
+
+func isFriend(person1, person2 int32) bool {
+	return root(person1) == root(person2)
+}
+
+func root(person int32) int32 {
+	for group[person] != person {
+		person = group[person]
+	}
+	return person
+}
+
+func makeFriend(person1, person2 int32) {
+	root1 := root(person1)
+	root2 := root(person2)
+	if size[root1] < size[root2] {
+		union(root1, root2)
+	} else {
+		union(root2, root1)
+	}
+}
+
+func union(rootA, rootB int32) {
+	group[rootA] = rootB
+	size[rootB] += size[rootA]
+	if size[rootB] > biggestSize {
+		biggestSize = size[rootB]
+	}
+}
