@@ -1,73 +1,20 @@
-package data_structures/array
+package array
 
 import (
 	"sort"
 )
 
-// BubbleSort sorts the array a using Bubble Sort algorithm
-func BubbleSort(a []int) (sorted []int) {
-	sorted = make([]int, len(a))
-	copy(sorted, a)
-
-	n := len(sorted)
-	for {
-		swapped := false
-
-		for i := 1; i < n; i++ {
-			if sorted[i-1] > sorted[i] {
-				temp := sorted[i-1]
-				sorted[i-1] = sorted[i]
-				sorted[i] = temp
-				swapped = true
-			}
-		}
-
-		if !swapped {
-			break
-		}
-		n--
-	}
-
-	return sorted
-}
-
-// CountingSort sorts the array a using Counting Sort algorithm
-func CountingSort(a []int) []int {
-	if len(a) <= 1 {
-		return a
-	}
-
-	counter := make([]int, len(a))
-	for _, v := range a {
-		counter[v]++
-	}
-
-	for i := 1; i < len(counter); i++ {
-		counter[i] = counter[i] + counter[i-1]
-	}
-
-	sorted := make([]int, len(a))
-	for _, v := range a {
-		sorted[counter[v]-1] = v
-		counter[v]--
-	}
-
-	return sorted
-}
-
 // Equal checks whether two slices a and b are identical (true) or not (false)
-// DEPRECATED, use cmp.Equal instead
+// If importing external library is allowed, use cmp.Equal instead
 func Equal(a, b []int) bool {
 	if len(a) != len(b) {
 		return false
 	}
-
 	for i, v := range a {
 		if v != b[i] {
 			return false
 		}
 	}
-
 	return true
 }
 
@@ -77,7 +24,6 @@ func Mean(a []int) float64 {
 	for _, v := range a {
 		sum += float64(v)
 	}
-
 	return sum / float64(len(a))
 }
 
@@ -87,13 +33,11 @@ func Median(a []int) float64 {
 
 	if len(a)%2 == 1 {
 		midIndex := len(a) / 2
-
 		return float64(a[midIndex])
 	} else {
 		midIndex1 := len(a)/2 - 1
 		midIndex2 := midIndex1 + 1
 		sum := a[midIndex1] + a[midIndex2]
-
 		return float64(sum) / 2
 	}
 }

@@ -1,211 +1,108 @@
-package data_structures/array_test
+package array_test
 
 import (
 	"testing"
 
-	"github.com/google/go-cmp/cmp"
-	"github.com/ianadiwibowo/central-park/array"
+	"github.com/ianadiwibowo/central-park/datastructures/array"
+	"github.com/stretchr/testify/assert"
 )
 
-func TestBubbleSort(t *testing.T) {
-	a_cases := [][]int{
-		{11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
-		{-9},
-		{},
-	}
-	expectations := [][]int{
-		{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
-		{-9},
-		{},
-	}
-	for i, v := range a_cases {
-		result := array.BubbleSort(v)
-		if cmp.Equal(result, expectations[i]) != true {
-			t.Errorf("Test: %v. Expected: %v. Got: %v.", v, expectations[i], result)
-		}
-	}
-}
-
-func TestCountingSort(t *testing.T) {
-	a_cases := [][]int{
-		{4, 0, 0, 1, 0, 2, 4, 5, 1},
-		{0, 4, 1, 7, 5, 5, 6, 4, 3, 3, 4, 2, 1, 9, 8, 4, 6},
-		{2, 1, 0},
-		{5},
-		{},
-	}
-	expectations := [][]int{
-		{0, 0, 0, 1, 1, 2, 4, 4, 5},
-		{0, 1, 1, 2, 3, 3, 4, 4, 4, 4, 5, 5, 6, 6, 7, 8, 9},
-		{0, 1, 2},
-		{5},
-		{},
-	}
-	for i, v := range a_cases {
-		result := array.CountingSort(v)
-		if cmp.Equal(result, expectations[i]) != true {
-			t.Errorf("Test: %v. Expected: %v. Got: %v.", v, expectations[i], result)
-		}
-	}
-}
-
-func TestEqual(t *testing.T) {
+func TestEqual_GivenEqualInputs_ReturnsTrue(t *testing.T) {
 	a := []int{1, 2, 3, 4, 5}
 	b := []int{1, 2, 3, 4, 5}
 
-	if array.Equal(a, b) != true {
-		t.Errorf("Expected: true. Got: false")
-	}
+	assert.True(t, array.Equal(a, b))
 }
 
-func TestEqualWithDifferentLength(t *testing.T) {
+func TestEqual_GivenDifferentLength_ReturnsFalse(t *testing.T) {
 	a := []int{1, 2, 3, 4, 5}
 	b := []int{1, 2, 3, 4, 5, 6}
 
-	if array.Equal(a, b) != false {
-		t.Errorf("Expected: false. Got: true")
-	}
+	assert.False(t, array.Equal(a, b))
 }
 
-func TestEqualWithSameLengthButNonIdenticalInputs(t *testing.T) {
+func TestEqual_GivenSameLength_ButDifferentInputs_ReturnsFalse(t *testing.T) {
 	a := []int{1, 2, 3, 4, 5}
 	b := []int{2, 6, 9, 0, 9}
 
-	if array.Equal(a, b) != false {
-		t.Errorf("Expected: false. Got: true")
-	}
+	assert.False(t, array.Equal(a, b))
 }
 
 func TestMean(t *testing.T) {
-	a_cases := [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
-		{10, 5, 3, 2, 6, 8, 3, 7, 7, 1, 90},
-	}
-	expectations := []float64{
-		4.0,
-		12.909090909090908,
-	}
-
-	for i, v := range a_cases {
-		result := array.Mean(v)
-		if result != expectations[i] {
-			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
-		}
-	}
+	assert.Equal(t, 4.0,
+		array.Mean([]int{1, 2, 3, 4, 5, 6, 7}),
+	)
+	assert.Equal(t, 12.909090909090908,
+		array.Mean([]int{10, 5, 3, 2, 6, 8, 3, 7, 7, 1, 90}),
+	)
 }
 
-func TestMedianWithOddAray(t *testing.T) {
-	a_cases := [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
-		{10, 5, 3, 2, 6, 8, 3, 7, 7, 1, 90},
-		{10, 20, 30},
-	}
-	expectations := []float64{
-		4,
-		6,
-		20,
-	}
-
-	for i, v := range a_cases {
-		result := array.Median(v)
-		if result != expectations[i] {
-			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
-		}
-	}
+func TestMedian_GivenOddLengthArray(t *testing.T) {
+	assert.Equal(t, 4.0, array.Median([]int{1, 2, 3, 4, 5, 6, 7}))
+	assert.Equal(t, 20.0, array.Median([]int{10, 20, 30}))
+	assert.Equal(t, 6.0,
+		array.Median([]int{10, 5, 3, 2, 6, 8, 3, 7, 7, 1, 90}),
+	)
 }
 
-func TestMedianWithEvenAray(t *testing.T) {
-	a_cases := [][]int{
-		{1, 2, 4, 6},
-		{4, 5, 6, 8, 9, 1, 2, 3},
-		{3, 13, 7, 5, 21, 23, 23, 40, 23, 14, 12, 56, 23, 29},
-	}
-	expectations := []float64{
-		3,
-		4.5,
-		22,
-	}
-
-	for i, v := range a_cases {
-		result := array.Median(v)
-		if result != expectations[i] {
-			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
-		}
-	}
+func TestMedian_GivenEvenLengthAray(t *testing.T) {
+	assert.Equal(t, 3.0, array.Median([]int{1, 2, 4, 6}))
+	assert.Equal(t, 4.5,
+		array.Median([]int{4, 5, 6, 8, 9, 1, 2, 3}),
+	)
+	assert.Equal(t, 22.0,
+		array.Median([]int{3, 13, 7, 5, 21, 23, 23, 40, 23, 14, 12,
+			56, 23, 29}),
+	)
 }
 
 func TestMin(t *testing.T) {
-	a_cases := [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
-		{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90},
-		{6, 6, 6},
-		{-1},
-		{},
-	}
-	expectations := []int{
-		1,
-		-800,
-		6,
-		-1,
-		0,
-	}
-
-	for i, v := range a_cases {
-		result := array.Min(v)
-		if result != expectations[i] {
-			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
-		}
-	}
+	assert.Equal(t, 0, array.Min([]int{}))
+	assert.Equal(t, -1, array.Min([]int{-1}))
+	assert.Equal(t, 6, array.Min([]int{6, 6, 6}))
+	assert.Equal(t, 1, array.Min([]int{1, 2, 3, 4, 5, 6, 7}))
+	assert.Equal(t, -800,
+		array.Min([]int{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90}),
+	)
 }
 
 func TestMax(t *testing.T) {
-	a_cases := [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
-		{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90},
-		{6, 6, 6},
-		{-1},
-		{},
-	}
-	expectations := []int{
-		7,
-		90,
-		6,
-		-1,
-		0,
-	}
-
-	for i, v := range a_cases {
-		result := array.Max(v)
-		if result != expectations[i] {
-			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
-		}
-	}
+	assert.Equal(t, 0, array.Max([]int{}))
+	assert.Equal(t, -1, array.Max([]int{-1}))
+	assert.Equal(t, 6, array.Max([]int{6, 6, 6}))
+	assert.Equal(t, 7, array.Max([]int{1, 2, 3, 4, 5, 6, 7}))
+	assert.Equal(t, 90,
+		array.Max([]int{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90}),
+	)
 }
 
 func TestReverse(t *testing.T) {
-	a_cases := [][]int{
-		{1, 2, 3, 4, 5, 6, 7},
-		{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90},
-		{6, 6, 6},
-		{-1},
-		{},
-		{-1, -2, -3, -4},
-		{-1, -2, -3, -4, -5},
-	}
-	expectations := [][]int{
-		{7, 6, 5, 4, 3, 2, 1},
-		{90, 1, 7, 7, 3, -800, 6, 2, 3, 5, 10},
-		{6, 6, 6},
-		{-1},
-		{},
-		{-4, -3, -2, -1},
-		{-5, -4, -3, -2, -1},
-	}
-
-	for i, v := range a_cases {
-		result := array.Reverse(v)
-		if cmp.Equal(result, expectations[i]) != true {
-			t.Errorf("Expected from %v: %v. Got: %v", v, expectations[i], result)
-		}
-	}
+	assert.Equal(t,
+		[]int{},
+		array.Reverse([]int{}),
+	)
+	assert.Equal(t,
+		[]int{-1},
+		array.Reverse([]int{-1}),
+	)
+	assert.Equal(t,
+		[]int{6, 6, 6},
+		array.Reverse([]int{6, 6, 6}),
+	)
+	assert.Equal(t,
+		[]int{7, 6, 5, 4, 3, 2, 1},
+		array.Reverse([]int{1, 2, 3, 4, 5, 6, 7}),
+	)
+	assert.Equal(t,
+		[]int{10, 5, 3, 2, 6, -800, 3, 7, 7, 1, 90},
+		array.Reverse([]int{90, 1, 7, 7, 3, -800, 6, 2, 3, 5, 10}),
+	)
+	assert.Equal(t,
+		[]int{-4, -3, -2, -1},
+		array.Reverse([]int{-1, -2, -3, -4}),
+	)
+	assert.Equal(t,
+		[]int{-5, -4, -3, -2, -1},
+		array.Reverse([]int{-1, -2, -3, -4, -5}),
+	)
 }
