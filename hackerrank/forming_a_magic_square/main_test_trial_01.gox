@@ -1,0 +1,85 @@
+package main
+
+import (
+	"testing"
+
+	testifyAssert "github.com/stretchr/testify/assert"
+)
+
+func TestCalculateCost(t *testing.T) {
+	testifyAssert.Equal(t, int32(1),
+		calculateCost(
+			[][]int32{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}},
+			[][]int32{{2, 1, 1}, {1, 1, 1}, {1, 1, 1}},
+		),
+	)
+	testifyAssert.Equal(t, int32(1),
+		calculateCost(
+			[][]int32{{2, 1, 1}, {1, 1, 1}, {1, 1, 1}},
+			[][]int32{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}},
+		),
+	)
+	testifyAssert.Equal(t, int32(9),
+		calculateCost(
+			[][]int32{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}},
+			[][]int32{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}},
+		),
+	)
+}
+
+func TestIsMagicSquare(t *testing.T) {
+	testifyAssert.True(t,
+		isMagicSquare([][]int32{{8, 3, 4}, {1, 5, 9}, {6, 7, 2}}),
+	)
+	testifyAssert.True(t,
+		isMagicSquare([][]int32{{2, 7, 6}, {9, 5, 1}, {4, 3, 8}}),
+	)
+	testifyAssert.False(t,
+		isMagicSquare([][]int32{{0, 2, 3}, {4, 5, 6}, {7, 8, 9}}),
+	)
+	testifyAssert.False(t,
+		isMagicSquare([][]int32{{1, 1, 3}, {4, 5, 6}, {7, 8, 9}}),
+	)
+	testifyAssert.False(t,
+		isMagicSquare([][]int32{{5, 3, 4}, {1, 5, 8}, {6, 4, 2}}),
+	)
+	testifyAssert.False(t,
+		isMagicSquare([][]int32{{2, 7, 8}, {9, 5, 1}, {4, 3, 6}}),
+	)
+	testifyAssert.False(t,
+		isMagicSquare([][]int32{{2, 1, 6}, {9, 5, 7}, {4, 3, 8}}),
+	)
+	testifyAssert.False(t,
+		isMagicSquare([][]int32{{2, 7, 6}, {1, 5, 9}, {4, 3, 8}}),
+	)
+}
+
+func TestIsDistinct(t *testing.T) {
+	testifyAssert.True(t,
+		isDistinct([][]int32{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}),
+	)
+	testifyAssert.True(t,
+		isDistinct([][]int32{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}}),
+	)
+	testifyAssert.False(t,
+		isDistinct([][]int32{{0, 2, 3}, {4, 5, 6}, {7, 8, 9}}),
+	)
+	testifyAssert.False(t,
+		isDistinct([][]int32{{1, 1, 3}, {4, 5, 6}, {7, 8, 9}}),
+	)
+}
+
+func TestFormingMagicSquare(t *testing.T) {
+	assert(t,
+		[][]int32{
+			{4, 9, 2},
+			{3, 5, 7},
+			{8, 1, 5},
+		},
+		1,
+	)
+}
+
+func assert(t *testing.T, input [][]int32, expected int32) {
+	testifyAssert.Equal(t, expected, FormingMagicSquare(input))
+}
