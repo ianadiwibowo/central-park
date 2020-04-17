@@ -107,8 +107,8 @@ func TestReverse(t *testing.T) {
 	)
 }
 
-func TestUniq_GivenEmptyInput_ReturnsZero(t *testing.T) {
-	assert.Equal(t, []int{0}, array.Uniq([]int{}))
+func TestUniq_GivenEmptyInput_ReturnsEmptyOutput(t *testing.T) {
+	assert.Equal(t, []int{}, array.Uniq([]int{}))
 }
 
 func TestUniq_GivenDistinctInput_ReturnsInput(t *testing.T) {
@@ -126,4 +126,89 @@ func TestUniq_GivenNonDistinctInput_ReturnsDistinctOutput(t *testing.T) {
 	assert.Equal(t, []int{11, 10, 9, 1},
 		array.Uniq([]int{11, 10, 11, 10, 9, 9, 1}),
 	)
+}
+
+func TestUnion_GivenEmptyInputs_ReturnsEmptyOutput(t *testing.T) {
+	assert.Equal(t, []int{},
+		array.Union([]int{}, []int{}))
+}
+
+func TestUnion_GivenSameInputs(t *testing.T) {
+	assert.Equal(t, []int{1},
+		array.Union([]int{1}, []int{1}))
+	assert.Equal(t, []int{1, 2},
+		array.Union([]int{1, 2}, []int{1, 2}))
+}
+
+func TestUnion_GivenDifferentInputs(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3, 4},
+		array.Union([]int{1, 2}, []int{3, 4}))
+	assert.Equal(t, []int{1, 2, 3},
+		array.Union([]int{1, 2}, []int{2, 3}))
+	assert.Equal(t, []int{10, 8, 6, 4, 2, 9, 7, 5, 3, 1},
+		array.Union([]int{10, 8, 6, 4, 2}, []int{9, 7, 5, 3, 1}))
+	assert.Equal(t, []int{99, 4, 2, 3, 1},
+		array.Union([]int{99, 4, 2}, []int{3, 99, 1, 4, 2}))
+	assert.Equal(t, []int{1, 2, 3, 4, 5},
+		array.Union([]int{1}, []int{1, 2, 3, 4, 5}))
+}
+
+func TestIntersection_GivenEmptyInputs_ReturnsEmptyOutput(t *testing.T) {
+	assert.Equal(t, []int{},
+		array.Intersection([]int{}, []int{}))
+}
+
+func TestIntersection_GivenSameInputs(t *testing.T) {
+	assert.Equal(t, []int{1},
+		array.Intersection([]int{1}, []int{1}))
+	assert.Equal(t, []int{1, 2},
+		array.Intersection([]int{1, 2}, []int{1, 2}))
+}
+
+func TestIntersection_GivenDifferentInputs(t *testing.T) {
+	assert.Equal(t, []int{},
+		array.Intersection([]int{1, 2}, []int{3, 4}))
+	assert.Equal(t, []int{},
+		array.Intersection([]int{1, 2, 3}, []int{4, 5, 6, 7, 8}))
+}
+
+func TestIntersection_GivenOverlappingInputs(t *testing.T) {
+	assert.Equal(t, []int{1},
+		array.Intersection([]int{1, 2}, []int{1, 3}))
+	assert.Equal(t, []int{3, 4, 5},
+		array.Intersection([]int{1, 2, 3, 4, 5}, []int{5, 4, 3}))
+	assert.Equal(t, []int{1, 2, 3},
+		array.Intersection([]int{8, 1, 2, 3}, []int{5, 4, 3, 2, 1, 9, 5, 4}))
+	assert.Equal(t, []int{2},
+		array.Intersection([]int{1, 1, 1, 2, 2, 2}, []int{2, 3, 3, 3, 3}))
+}
+
+func TestDifference_GivenEmptyInputs_ReturnsEmptyOutput(t *testing.T) {
+	assert.Equal(t, []int{},
+		array.Difference([]int{}, []int{}))
+}
+
+func TestDifference_GivenSameInputs_ReturnsEmptyOutput(t *testing.T) {
+	assert.Equal(t, []int{},
+		array.Difference([]int{1}, []int{1}))
+	assert.Equal(t, []int{},
+		array.Difference([]int{1, 2}, []int{1, 2}))
+}
+
+func TestDifference_GivenDifferentInputs(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3, 4},
+		array.Difference([]int{1, 2}, []int{3, 4}))
+	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8},
+		array.Difference([]int{1, 2, 2, 3}, []int{4, 5, 5, 6, 7, 8}))
+}
+
+func TestDifference_GivenOverlappingInputs(t *testing.T) {
+	assert.Equal(t, []int{2, 3},
+		array.Difference([]int{1, 1, 1, 2, 2, 2}, []int{1, 1, 1, 3, 3, 3}))
+	assert.Equal(t, []int{1, 2},
+		array.Difference([]int{1, 2, 3, 4, 5}, []int{5, 4, 3}))
+	assert.Equal(t, []int{8, 5, 4, 9},
+		array.Difference([]int{8, 1, 2, 3}, []int{5, 4, 3, 2, 1, 9, 5, 4}))
+	assert.Equal(t, []int{1, 3},
+		array.Difference([]int{1, 1, 1, 2, 2, 2}, []int{2, 3, 3, 3, 3}))
 }

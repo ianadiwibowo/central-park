@@ -91,7 +91,7 @@ func Reverse(a []int) []int {
 // Uniq returns distinct elements from the array a while preserving order
 func Uniq(a []int) (result []int) {
 	if len(a) == 0 {
-		return []int{0}
+		return []int{}
 	}
 
 	distinct := make(map[int]bool)
@@ -109,12 +109,107 @@ func Uniq(a []int) (result []int) {
 	return result
 }
 
-// TODO
+// Union merges set a and b while preserving order
 func Union(a, b []int) (result []int) {
-	return []int{}
+	if len(a) == 0 && len(b) == 0 {
+		return []int{}
+	}
+
+	counter := make(map[int]bool)
+	for _, v := range a {
+		counter[v] = true
+	}
+	for _, v := range b {
+		counter[v] = true
+	}
+
+	// This is needed to preserve order
+	for _, v := range a {
+		if counter[v] {
+			result = append(result, v)
+			delete(counter, v)
+		}
+	}
+	for _, v := range b {
+		if counter[v] {
+			result = append(result, v)
+			delete(counter, v)
+		}
+	}
+	return result
+}
+
+// Intersection finds distinct common elements between a and b while preserving order
+func Intersection(a, b []int) (result []int) {
+	if len(a) == 0 && len(b) == 0 {
+		return []int{}
+	}
+
+	common := make(map[int]bool)
+	result = []int{}
+
+	for _, v := range b {
+		common[v] = true
+	}
+
+	for _, v := range a {
+		if common[v] {
+			result = append(result, v)
+			delete(common, v)
+		}
+	}
+	return result
+}
+
+// Difference finds distinct uncommon elements between a and b while preserving order
+func Difference(a, b []int) (result []int) {
+	if len(a) == 0 && len(b) == 0 {
+		return []int{}
+	}
+
+	common := make(map[int]int)
+	result = []int{}
+	const (
+		NewElement    = 0
+		CommonElement = 1
+		OnlyInA       = 2
+		OnlyInB       = 3
+	)
+
+	for _, v := range a {
+		common[v] = OnlyInA
+	}
+	for _, v := range b {
+		if common[v] == OnlyInA {
+			common[v] = CommonElement
+		} else if common[v] == NewElement {
+			common[v] = OnlyInB
+		}
+	}
+
+	// This is needed to preserve order
+	for _, v := range a {
+		if common[v] == OnlyInA {
+			result = append(result, v)
+			delete(common, v)
+		}
+	}
+	for _, v := range b {
+		if common[v] == OnlyInB {
+			result = append(result, v)
+			delete(common, v)
+		}
+	}
+
+	return result
 }
 
 // TODO
-func Intersection(a, b []int) (result []int) {
-	return []int{}
+func Permutation(a []int) (result [][]int) {
+	return [][]int{}
+}
+
+// TODO
+func Combination(a []int) (result [][]int) {
+	return [][]int{}
 }
