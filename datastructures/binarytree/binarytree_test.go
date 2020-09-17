@@ -289,3 +289,16 @@ func TestIsLeaf(t *testing.T) {
 	assert.False(t, b.Find(12).IsLeaf())
 	assert.False(t, b.Find(8).IsLeaf())
 }
+
+func TestPrintInverseLevelOrder(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(1)
+	b.InsertLeft(2, 1)
+	b.InsertRight(3, 1)
+	b.InsertLeft(4, 2)
+	b.InsertRight(5, 2)
+	b.InsertLeft(6, 3)
+	b.InsertRight(7, 3)
+
+	assert.Equal(t, "[1 3 2 7 6 5 4]", b.PrintInverseLevelOrder())
+}
