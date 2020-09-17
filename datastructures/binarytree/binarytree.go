@@ -188,3 +188,24 @@ func (b *BinaryTree) PrintLevelOrder() (printout string) {
 func (btn *BinaryTreeNode) IsLeaf() bool {
 	return btn.Left == nil && btn.Right == nil
 }
+
+// PrintInverseLevelOrder returns the level-ordered (breadth first) human-readable format of the binary tree, but inverted
+func (b *BinaryTree) PrintInverseLevelOrder() (printout string) {
+	queue := queue.NewQueue()
+	queue.Enqueue(b.Root)
+
+	for !queue.IsEmpty() {
+		currentNode := queue.Dequeue().(*BinaryTreeNode)
+		printout = fmt.Sprintf("%v %v", printout, currentNode.Value)
+
+		if currentNode.Right != nil {
+			queue.Enqueue(currentNode.Right)
+		}
+
+		if currentNode.Left != nil {
+			queue.Enqueue(currentNode.Left)
+		}
+	}
+
+	return fmt.Sprintf("[%v]", strings.TrimSpace(printout))
+}
