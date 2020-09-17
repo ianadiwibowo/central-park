@@ -302,3 +302,22 @@ func TestPrintInverseLevelOrder(t *testing.T) {
 
 	assert.Equal(t, "[1 3 2 7 6 5 4]", b.PrintInverseLevelOrder())
 }
+
+func TestFindParent(t *testing.T) {
+	b := binarytree.NewBinaryTree()
+	b.SetRoot(1)
+	b.InsertLeft(2, 1)
+	b.InsertRight(3, 1)
+	b.InsertLeft(4, 2)
+	b.InsertRight(5, 2)
+	b.InsertLeft(6, 3)
+	b.InsertRight(7, 3)
+
+	assert.Equal(t, 2, b.FindParent(4).Value)
+	assert.Equal(t, 2, b.FindParent(5).Value)
+	assert.Equal(t, 3, b.FindParent(6).Value)
+	assert.Equal(t, 3, b.FindParent(7).Value)
+	assert.Equal(t, 1, b.FindParent(2).Value)
+	assert.Equal(t, 1, b.FindParent(3).Value)
+	assert.Nil(t, b.FindParent(1))
+}
