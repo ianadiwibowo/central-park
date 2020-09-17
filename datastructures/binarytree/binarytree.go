@@ -209,3 +209,32 @@ func (b *BinaryTree) PrintInverseLevelOrder() (printout string) {
 
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printout))
 }
+
+// FindParent searches for a node whose left or right child have a certain value
+func (b *BinaryTree) FindParent(value int) *BinaryTreeNode {
+	return b.findParent(b.Root, value)
+}
+
+func (b *BinaryTree) findParent(currentNode *BinaryTreeNode, value int) *BinaryTreeNode {
+	queue := queue.NewQueue()
+	queue.Enqueue(b.Root)
+
+	for !queue.IsEmpty() {
+		currentNode := queue.Dequeue().(*BinaryTreeNode)
+
+		if currentNode.Left != nil {
+			if currentNode.Left.Value == value {
+				return currentNode
+			}
+			queue.Enqueue(currentNode.Left)
+		}
+		if currentNode.Right != nil {
+			if currentNode.Right.Value == value {
+				return currentNode
+			}
+			queue.Enqueue(currentNode.Right)
+		}
+	}
+
+	return nil
+}
