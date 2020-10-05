@@ -10,14 +10,14 @@ import (
 func TestNewBinaryTree(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 
-	assert.Equal(t, "[]", b.PrintPreOrder())
+	assert.Equal(t, []int(nil), b.TraversePreOrder())
 }
 
 func TestSetRoot(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(5)
 
-	assert.Equal(t, "[5]", b.PrintPreOrder())
+	assert.Equal(t, []int{5}, b.TraversePreOrder())
 }
 
 func TestInsertLeft(t *testing.T) {
@@ -25,7 +25,7 @@ func TestInsertLeft(t *testing.T) {
 	b.SetRoot(5)
 	b.InsertLeft(1, 5)
 
-	assert.Equal(t, "[5 1]", b.PrintPreOrder())
+	assert.Equal(t, []int{5, 1}, b.TraversePreOrder())
 }
 
 func TestInsertLeftOnNonExistentValue(t *testing.T) {
@@ -33,7 +33,7 @@ func TestInsertLeftOnNonExistentValue(t *testing.T) {
 	b.SetRoot(5)
 	b.InsertLeft(1, 4)
 
-	assert.Equal(t, "[5]", b.PrintPreOrder())
+	assert.Equal(t, []int{5}, b.TraversePreOrder())
 }
 
 func TestInsertRight(t *testing.T) {
@@ -41,7 +41,7 @@ func TestInsertRight(t *testing.T) {
 	b.SetRoot(5)
 	b.InsertRight(7, 5)
 
-	assert.Equal(t, "[5 7]", b.PrintPreOrder())
+	assert.Equal(t, []int{5, 7}, b.TraversePreOrder())
 }
 
 func TestInsertRightOnNonExistentValue(t *testing.T) {
@@ -49,7 +49,7 @@ func TestInsertRightOnNonExistentValue(t *testing.T) {
 	b.SetRoot(5)
 	b.InsertRight(7, 4)
 
-	assert.Equal(t, "[5]", b.PrintPreOrder())
+	assert.Equal(t, []int{5}, b.TraversePreOrder())
 }
 
 func TestFind(t *testing.T) {
@@ -205,22 +205,6 @@ func TestFindCompletePathsWithBiggerCompleteLeaves(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
-func TestPrintPreOrder(t *testing.T) {
-	b := binarytree.NewBinaryTree()
-	b.SetRoot(8)
-	b.InsertLeft(5, 8)
-	b.InsertLeft(9, 5)
-	b.InsertRight(7, 5)
-	b.InsertLeft(1, 7)
-	b.InsertRight(12, 7)
-	b.InsertLeft(2, 12)
-	b.InsertRight(4, 8)
-	b.InsertRight(11, 4)
-	b.InsertLeft(3, 11)
-
-	assert.Equal(t, "[8 5 9 7 1 12 2 4 11 3]", b.PrintPreOrder())
-}
-
 func TestTraversePreOrder(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
@@ -235,22 +219,6 @@ func TestTraversePreOrder(t *testing.T) {
 	b.InsertLeft(3, 11)
 
 	assert.Equal(t, []int{8, 5, 9, 7, 1, 12, 2, 4, 11, 3}, b.TraversePreOrder())
-}
-
-func TestPrintInOrder(t *testing.T) {
-	b := binarytree.NewBinaryTree()
-	b.SetRoot(8)
-	b.InsertLeft(5, 8)
-	b.InsertLeft(9, 5)
-	b.InsertRight(7, 5)
-	b.InsertLeft(1, 7)
-	b.InsertRight(12, 7)
-	b.InsertLeft(2, 12)
-	b.InsertRight(4, 8)
-	b.InsertRight(11, 4)
-	b.InsertLeft(3, 11)
-
-	assert.Equal(t, "[9 5 1 7 2 12 8 4 3 11]", b.PrintInOrder())
 }
 
 func TestTraverseInOrder(t *testing.T) {
@@ -269,22 +237,6 @@ func TestTraverseInOrder(t *testing.T) {
 	assert.Equal(t, []int{9, 5, 1, 7, 2, 12, 8, 4, 3, 11}, b.TraverseInOrder())
 }
 
-func TestPrintPostOrder(t *testing.T) {
-	b := binarytree.NewBinaryTree()
-	b.SetRoot(8)
-	b.InsertLeft(5, 8)
-	b.InsertLeft(9, 5)
-	b.InsertRight(7, 5)
-	b.InsertLeft(1, 7)
-	b.InsertRight(12, 7)
-	b.InsertLeft(2, 12)
-	b.InsertRight(4, 8)
-	b.InsertRight(11, 4)
-	b.InsertLeft(3, 11)
-
-	assert.Equal(t, "[9 1 2 12 7 5 3 11 4 8]", b.PrintPostOrder())
-}
-
 func TestTraversePostOrder(t *testing.T) {
 	b := binarytree.NewBinaryTree()
 	b.SetRoot(8)
@@ -299,22 +251,6 @@ func TestTraversePostOrder(t *testing.T) {
 	b.InsertLeft(3, 11)
 
 	assert.Equal(t, []int{9, 1, 2, 12, 7, 5, 3, 11, 4, 8}, b.TraversePostOrder())
-}
-
-func TestPrintLevelOrder(t *testing.T) {
-	b := binarytree.NewBinaryTree()
-	b.SetRoot(8)
-	b.InsertLeft(5, 8)
-	b.InsertLeft(9, 5)
-	b.InsertRight(7, 5)
-	b.InsertLeft(1, 7)
-	b.InsertRight(12, 7)
-	b.InsertLeft(2, 12)
-	b.InsertRight(4, 8)
-	b.InsertRight(11, 4)
-	b.InsertLeft(3, 11)
-
-	assert.Equal(t, "[8 5 4 9 7 11 1 12 3 2]", b.PrintLevelOrder())
 }
 
 func TestTraverseLevelOrder(t *testing.T) {
