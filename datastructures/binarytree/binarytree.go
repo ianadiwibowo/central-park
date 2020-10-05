@@ -118,21 +118,7 @@ func findCompletePaths(currentNode *BinaryTreeNode, path []int, prevResults [][]
 	return prevResults
 }
 
-// PrintPreOrder returns the pre-ordered (depth first) human-readable format of the binary tree
-func (b *BinaryTree) PrintPreOrder() string {
-	return fmt.Sprintf("[%v]", strings.TrimSpace(printPreOrder(b.Root, "")))
-}
-
-func printPreOrder(currentNode *BinaryTreeNode, prevPrintout string) (printout string) {
-	if currentNode != nil {
-		printout = fmt.Sprintf("%v %v", prevPrintout, currentNode.Value)
-		printout := printPreOrder(currentNode.Left, printout)
-		return printPreOrder(currentNode.Right, printout)
-	}
-
-	return prevPrintout
-}
-
+// TraversePreOrder returns the pre-ordered (depth-first) binary tree values
 func (b *BinaryTree) TraversePreOrder() (result []int) {
 	var traverse func(currentNode *BinaryTreeNode)
 	traverse = func(currentNode *BinaryTreeNode) {
@@ -150,21 +136,7 @@ func (b *BinaryTree) TraversePreOrder() (result []int) {
 	return result
 }
 
-// PrintInOrder returns the in-ordered (depth first) human-readable format of the binary tree
-func (b *BinaryTree) PrintInOrder() string {
-	return fmt.Sprintf("[%v]", strings.TrimSpace(printInOrder(b.Root, "")))
-}
-
-func printInOrder(currentNode *BinaryTreeNode, prevPrintout string) string {
-	if currentNode != nil {
-		printout := printInOrder(currentNode.Left, prevPrintout)
-		printout = fmt.Sprintf("%v %v", printout, currentNode.Value)
-		return printInOrder(currentNode.Right, printout)
-	}
-
-	return prevPrintout
-}
-
+// TraverseInOrder returns the in-ordered (depth-first) binary tree values
 func (b *BinaryTree) TraverseInOrder() (result []int) {
 	var traverse func(currentNode *BinaryTreeNode)
 	traverse = func(currentNode *BinaryTreeNode) {
@@ -182,21 +154,7 @@ func (b *BinaryTree) TraverseInOrder() (result []int) {
 	return result
 }
 
-// PrintPostOrder returns the post-ordered (depth first) human-readable format of the binary tree
-func (b *BinaryTree) PrintPostOrder() string {
-	return fmt.Sprintf("[%v]", strings.TrimSpace(printPostOrder(b.Root, "")))
-}
-
-func printPostOrder(currentNode *BinaryTreeNode, prevPrintout string) string {
-	if currentNode != nil {
-		printout := printPostOrder(currentNode.Left, prevPrintout)
-		printout = printPostOrder(currentNode.Right, printout)
-		return fmt.Sprintf("%v %v", printout, currentNode.Value)
-	}
-
-	return prevPrintout
-}
-
+// TraversePostOrder returns the post-ordered (depth-first) binary tree values
 func (b *BinaryTree) TraversePostOrder() (result []int) {
 	var traverse func(currentNode *BinaryTreeNode)
 	traverse = func(currentNode *BinaryTreeNode) {
@@ -214,27 +172,7 @@ func (b *BinaryTree) TraversePostOrder() (result []int) {
 	return result
 }
 
-// PrintLevelOrder returns the level-ordered (breadth first) human-readable format of the binary tree
-func (b *BinaryTree) PrintLevelOrder() (printout string) {
-	queue := queue.NewQueue()
-	queue.Enqueue(b.Root)
-
-	for !queue.IsEmpty() {
-		currentNode := queue.Dequeue().(*BinaryTreeNode)
-		printout = fmt.Sprintf("%v %v", printout, currentNode.Value)
-
-		if currentNode.Left != nil {
-			queue.Enqueue(currentNode.Left)
-		}
-
-		if currentNode.Right != nil {
-			queue.Enqueue(currentNode.Right)
-		}
-	}
-
-	return fmt.Sprintf("[%v]", strings.TrimSpace(printout))
-}
-
+// TraverseLevelOrder returns the breadth-first-ordered binary tree values
 func (b *BinaryTree) TraverseLevelOrder() (result []int) {
 	queue := queue.NewQueue()
 	queue.Enqueue(b.Root)
