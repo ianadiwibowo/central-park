@@ -133,6 +133,23 @@ func printPreOrder(currentNode *BinaryTreeNode, prevPrintout string) (printout s
 	return prevPrintout
 }
 
+func (b *BinaryTree) TraversePreOrder() (result []int) {
+	var traverse func(currentNode *BinaryTreeNode)
+	traverse = func(currentNode *BinaryTreeNode) {
+		if currentNode == nil {
+			return
+		}
+
+		result = append(result, currentNode.Value)
+		traverse(currentNode.Left)
+		traverse(currentNode.Right)
+	}
+
+	traverse(b.Root)
+
+	return result
+}
+
 // PrintInOrder returns the in-ordered (depth first) human-readable format of the binary tree
 func (b *BinaryTree) PrintInOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printInOrder(b.Root, "")))
@@ -148,6 +165,23 @@ func printInOrder(currentNode *BinaryTreeNode, prevPrintout string) string {
 	return prevPrintout
 }
 
+func (b *BinaryTree) TraverseInOrder() (result []int) {
+	var traverse func(currentNode *BinaryTreeNode)
+	traverse = func(currentNode *BinaryTreeNode) {
+		if currentNode == nil {
+			return
+		}
+
+		traverse(currentNode.Left)
+		result = append(result, currentNode.Value)
+		traverse(currentNode.Right)
+	}
+
+	traverse(b.Root)
+
+	return result
+}
+
 // PrintPostOrder returns the post-ordered (depth first) human-readable format of the binary tree
 func (b *BinaryTree) PrintPostOrder() string {
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printPostOrder(b.Root, "")))
@@ -161,6 +195,23 @@ func printPostOrder(currentNode *BinaryTreeNode, prevPrintout string) string {
 	}
 
 	return prevPrintout
+}
+
+func (b *BinaryTree) TraversePostOrder() (result []int) {
+	var traverse func(currentNode *BinaryTreeNode)
+	traverse = func(currentNode *BinaryTreeNode) {
+		if currentNode == nil {
+			return
+		}
+
+		traverse(currentNode.Left)
+		traverse(currentNode.Right)
+		result = append(result, currentNode.Value)
+	}
+
+	traverse(b.Root)
+
+	return result
 }
 
 // PrintLevelOrder returns the level-ordered (breadth first) human-readable format of the binary tree
@@ -182,6 +233,26 @@ func (b *BinaryTree) PrintLevelOrder() (printout string) {
 	}
 
 	return fmt.Sprintf("[%v]", strings.TrimSpace(printout))
+}
+
+func (b *BinaryTree) TraverseLevelOrder() (result []int) {
+	queue := queue.NewQueue()
+	queue.Enqueue(b.Root)
+
+	for !queue.IsEmpty() {
+		currentNode := queue.Dequeue().(*BinaryTreeNode)
+		result = append(result, currentNode.Value)
+
+		if currentNode.Left != nil {
+			queue.Enqueue(currentNode.Left)
+		}
+
+		if currentNode.Right != nil {
+			queue.Enqueue(currentNode.Right)
+		}
+	}
+
+	return result
 }
 
 // IsLeaf checks whether a binary tree node is leaf (true) or not (false)
