@@ -28,13 +28,14 @@ func (l *LinkedList) Add(value int) {
 
 	if l.Head == nil {
 		l.Head = newNode
-	} else {
-		currentNode := l.Head
-		for currentNode.Next != nil {
-			currentNode = currentNode.Next
-		}
-		currentNode.Next = newNode
+		return
 	}
+
+	currentNode := l.Head
+	for currentNode.Next != nil {
+		currentNode = currentNode.Next
+	}
+	currentNode.Next = newNode
 }
 
 // InsertBefore puts the value before nextValue's node of the linked list
@@ -122,3 +123,4 @@ func (l *LinkedList) Print() string {
 
 	return v
 }
+
