@@ -25,7 +25,6 @@ func (q *QueueInt) Dequeue() int {
 	}
 
 	value := q.Storage[0]
-	q.Storage[0] = 0
 	q.Storage = q.Storage[1:]
 
 	return value
