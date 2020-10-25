@@ -26,7 +26,6 @@ func (q *Queue) Dequeue() interface{} {
 	}
 
 	value := q.Storage[0]
-	q.Storage[0] = nil
 	q.Storage = q.Storage[1:]
 
 	return value
