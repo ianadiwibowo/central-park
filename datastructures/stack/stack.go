@@ -26,7 +26,6 @@ func (s *Stack) Pop() int {
 
 	n := len(s.Storage) - 1
 	value := s.Storage[n]
-	s.Storage[n] = 0
 	s.Storage = s.Storage[:n]
 
 	return value
