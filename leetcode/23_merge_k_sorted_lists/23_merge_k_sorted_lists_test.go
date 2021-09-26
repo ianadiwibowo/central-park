@@ -24,3 +24,14 @@ func TestCreateLinkedList(t *testing.T) {
 	a.Equal(t, 3, node2.Next.Next.Val)
 	a.Equal(t, (*ListNode)(nil), node2.Next.Next.Next)
 }
+
+func TestPrintLinkedList(t *testing.T) {
+	node1 := createLinkedList([]int{})
+	a.Equal(t, "", printLinkedList(node1))
+
+	node3 := createLinkedList([]int{5})
+	a.Equal(t, "5", printLinkedList(node3))
+
+	node2 := createLinkedList([]int{1, 2, 3})
+	a.Equal(t, "1 2 3", printLinkedList(node2))
+}

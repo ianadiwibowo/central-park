@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // 23. Merge k Sorted Lists (Hard)
 // https://leetcode.com/problems/merge-k-sorted-lists/
 
@@ -28,4 +30,22 @@ func createLinkedList(values []int) *ListNode {
 	}
 
 	return root
+}
+
+func printLinkedList(root *ListNode) string {
+	if root == nil {
+		return ""
+	}
+
+	node := root
+	result := ""
+	for {
+		result = fmt.Sprintf("%s%v", result, node.Val)
+		if node.Next == nil {
+			break
+		}
+		result = result + " "
+		node = node.Next
+	}
+	return result
 }
